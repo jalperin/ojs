@@ -35,6 +35,8 @@
 				<img src="{$sharingButtonUrl}" width="{$sharingButtonWidth}" height="{$sharingButtonHeight}" border="0" alt="Bookmark and Share" style="border:0;padding:0" />
 		</a>
 	{/if}
+{/if}
+
 <!-- end AddThis -->
 {/if}
 
@@ -57,6 +59,8 @@
 </div><!-- content -->
 </div><!-- main -->
 </div><!-- body -->
+<br clear="all" />
+</div>
 
 {if $defineTermsContextId}
 <script type="text/javascript">

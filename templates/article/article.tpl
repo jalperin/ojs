@@ -126,5 +126,7 @@
 {call_hook name="Templates::Article::MoreInfo"}
 {include file="article/comments.tpl"}
 
-{include file="article/footer.tpl"}
+<div class="separator">&nbsp;</div>
+<p>{translate key="epaa.articleViews"} {$article->getViews()} {translate key="epaa.timesSince"} {$article->getDatePublished()|date_format:"$dateFormatLong"}</p>
 
+{include file="article/footer.tpl"}

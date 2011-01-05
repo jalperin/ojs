@@ -78,6 +78,7 @@ class AppLocale extends PKPLocale {
 				$locale = Request::getUserVar('setLocale');
 				if (empty($locale) || !in_array($locale, array_keys(AppLocale::getSupportedLocales()))) $locale = Request::getCookieVar('currentLocale');
 			} else {
+
 				$sessionManager =& SessionManager::getManager();
 				$session =& $sessionManager->getUserSession();
 				$locale = Request::getUserVar('uiLocale');
