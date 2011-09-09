@@ -70,7 +70,6 @@
 	{/if}
 
 	{$additionalHeadData}
- 	<script type="text/javascript" src="http://www.readability.com/embed.js"></script>
 </head>
 <body>
 
@@ -138,5 +137,6 @@
 	{if $issue}<a href="{url page="issue" op="view" path=$issue->getBestIssueId($currentJournal)}" target="_parent">{$issue->getIssueIdentification(false,true)|escape}</a> &gt;{/if}
 	<a href="{url page="article" op="view" path=$articleId|to_array:$galleyId}" class="current" target="_parent">{$article->getFirstAuthor(true)|escape}</a>
 </div>
+
 <div id="content">
-<div id='rdbWrapper'></div>
+

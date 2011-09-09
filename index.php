@@ -64,7 +64,6 @@ require('lib/blog/wp-blog-header.php');
 
 // Serve the request
 $application =& PKPApplication::getApplication();
-
 $application->execute();
 
 ?>
