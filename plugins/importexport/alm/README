@@ -1,0 +1,46 @@
+================================
+=== OJS Alm Export Plugin
+=== Version: 1.0
+=== Release date: March 31, 2013
+=== Author: Juan Pablo Alperin <pkp@alperin.ca>
+================================
+
+About
+-----
+This plugin for OJS 2 provides an export plugin to generate
+
+License
+-------
+This plugin is licensed under the GNU General Public License v2. See the file COPYING for the
+complete terms of this license.
+
+System Requirements
+-------------------
+Same requirements as the OJS 2.x core.
+
+Installation
+------------
+To install the plugin:
+ - copy the alm folder into OJS/plugins/importexport
+
+The export functionality can then be accessed only through the command line:
+Usage:
+php tools/importExport.php AlmExportPlugin [outFileName] [journal_path] all
+php tools/importExport.php AlmExportPlugin [outFileName] [journal_path] sinceLast
+php tools/importExport.php AlmExportPlugin [outFileName] [journal_path] articles [articleId1] [articleId2] ...
+php tools/importExport.php AlmExportPlugin [outFileName] [journal_path] issue [issueId]
+
+Known Issues/Limitations
+---------
+This plugin only works through the command line. A cronjob needs to be set up to push articles to
+ALM. The API to do this has not yet been developed. 
+
+
+Contact/Support
+---------------
+Please email the author for support, bugfixes, or comments.
+Email: <pkp@alperin.ca>
+
+Version History
+---------------
+1.0	- Initial Release
