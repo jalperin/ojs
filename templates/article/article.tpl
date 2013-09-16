@@ -135,7 +135,7 @@
 		{/if}
 	{/if}
 {/if}
-
+<div id="alm"></div>
 {include file="article/comments.tpl"}
 
 {include file="article/footer.tpl"}

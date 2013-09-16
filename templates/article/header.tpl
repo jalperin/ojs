@@ -51,8 +51,9 @@
 			document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
 			document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js' type='text/javascript'%3E%3C/script%3E"));
 		} else {
-			google.load("jquery", "{/literal}{$smarty.const.CDN_JQUERY_VERSION}{literal}");
-			google.load("jqueryui", "{/literal}{$smarty.const.CDN_JQUERY_UI_VERSION}{literal}");
+			// CUSTOM: updated jquery and jquery UI versions for the article pages
+			google.load("jquery", "1.9.1");
+			google.load("jqueryui", "1.8.24");
 		}
 	{/literal}</script>
 	{else}
