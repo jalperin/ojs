@@ -33,7 +33,7 @@ php tools/importExport.php AlmExportPlugin [outFileName] [journal_path] issue [i
 Known Issues/Limitations
 ---------
 This plugin only works through the command line. A cronjob needs to be set up to push articles to
-ALM. The API to do this has not yet been developed. 
+ALM. The API to do this has not yet been developed.
 
 
 Contact/Support

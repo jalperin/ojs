@@ -35,4 +35,5 @@
 	<message key="plugins.importexport.alm.export.error.couldNotWrite">Could not write the file to disk</message>
 
 <message key="plugins.importexport.crossref.errors.noDOIprefix">A valid DOI prefix must be specified in the Journal Setup in order to use this plugin.</message>
+<message key="plugins.importexport.alm.error.unknownJournal">An invalid journal path was passed into the plugin.</message>
 </locale>
