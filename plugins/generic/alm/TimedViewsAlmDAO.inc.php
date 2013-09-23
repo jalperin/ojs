@@ -83,7 +83,7 @@ class TimedViewsAlmDAO extends DAO {
 			unset($item);
 		}
 
-		$json = '{"name": "pkpTimedViews", "display_name": "This journal",  "events_url": null, "metrics": {';
+		$json = '{"name": "pkpTimedViews", "display_name": "",  "events_url": null, "metrics": {';
 		$json .= '"pdf": ' . $totalPdf . ',
 		            "html": ' . $totalHtml . ',
 					"shares": null,

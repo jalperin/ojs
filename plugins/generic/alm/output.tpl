@@ -343,10 +343,15 @@ d3.select("#alm > #loading").remove();
 
 				countLabel.append("br");
 
-				// link the source name
-				countLabel.append("a")
-					.attr("href", function(d) { return baseUrl + "/sources/" + source.name; })
-					.text(function(d) { return source.display_name; });
+				if (source.name == 'timedViewPlugin') {
+					countLabel.append("span")
+							.text(function(d) { return source.display_name; });
+				} else {
+					// link the source name
+					countLabel.append("a")
+						.attr("href", function(d) { return baseUrl + "/sources/" + source.name; })
+						.text(function(d) { return source.display_name; });
+				}
 			}
 
 			if ( hasSVG ) {
@@ -477,7 +482,7 @@ d3.select("#alm > #loading").remove();
 	{/literal}
 </script>
 <br />
-<span style="float: right"><sub>Metrics powered by <a href="http://article-level-metrics.plos.org/">PLOS ALM</a><sub></span>
+<span style="float: right"><sub>Metrics powered by <a href="http://pkp-alm.lib.sfu.ca/">PLOS ALM</a><sub></span>
 <br />
 
 
