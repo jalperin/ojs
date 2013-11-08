@@ -148,6 +148,7 @@ class DOIExportPlugin extends ImportExportPlugin {
 		// multiple objects.
 		$multiSelect = (substr($op, -1) == 's');
 
+		$target = 'index';
 		// Check whether we serve an exportation request.
 		if (substr($op, 0, 6) == 'export') {
 			// Check whether the "register" button was clicked.
@@ -158,29 +159,36 @@ class DOIExportPlugin extends ImportExportPlugin {
 			} else {
 				$action = 'export';
 			}
+			$target = $multiSelect ? substr($op, 6, -1) : substr($op, 6);
 		// Check whether we serve a registration request.
 		} elseif (substr($op, 0, 8) == 'register') {
 			$action = 'register';
+			$target = $multiSelect ? substr($op, 8, -1) : substr($op, 8);
 		// Check whether we serve a reset request (which is allowed for single targets only).
 		} elseif (!$multiSelect && substr($op, 0, 5) == 'reset') {
 			$action = 'reset';
+			$target = substr($op, 5);
 		// By default we assume a display request.
 		} else {
 			$action = 'display';
+			$target = $multiSelect ? substr($op, 0, -1) : $op;
 		}
 
-		// Identify the operation's target. The index is the default.
-		// NB: Order is relevant! The word "galley" contains "all" and
-		// "index" must be last so that it is selected if nothing else
-		// matches.
 		$objectTypes = $this->getAllObjectTypes();
-		$targets = array_keys($objectTypes);
-		if ($action != 'reset') $targets[] = 'all';
-		$targets[] = 'index';
-		foreach($targets as $target) {
-			if (strpos($op, strtolower_codesafe($target)) !== false) break;
+		if ($target != 'all') {
+			$targetAllowed = false;
+			foreach(array_keys($objectTypes) as $objectType) {
+				if (strtolower_codesafe($objectType) == $target) {
+					$target = $objectType;
+					$targetAllowed = true;
+					break;
+				}
+			}
+			if (!$targetAllowed) {
+				$target = 'index';
+				$action = 'dispay';
+			}
 		}
-		if ($target == 'index') $action = 'display';
 
 		// Dispatch the action.
 		switch($action) {
@@ -259,7 +267,7 @@ class DOIExportPlugin extends ImportExportPlugin {
 
 				switch ($target) {
 					case 'issue':
-						$this->_displayIssueList($templateMgr, $journal);
+						$this->displayIssueList($templateMgr, $journal);
 						break;
 
 					case 'article':
@@ -444,6 +452,40 @@ class DOIExportPlugin extends ImportExportPlugin {
 			'article' => DOI_EXPORT_ARTICLES,
 			'galley' => DOI_EXPORT_GALLEYS
 		);
+	}
+
+	/**
+	 * Display a list of issues for export.
+	 * @param $templateMgr TemplateManager
+	 * @param $journal Journal
+	 */
+	function displayIssueList(&$templateMgr, &$journal) {
+		$this->setBreadcrumbs(array(), true);
+
+		// Retrieve all published issues.
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OJS_EDITOR));
+		$issueDao =& DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
+		$this->registerDaoHook('IssueDAO');
+		$issueIterator =& $issueDao->getPublishedIssues($journal->getId(), Handler::getRangeInfo('issues'));
+
+		// Filter only issues that have a DOI assigned.
+		$issues = array();
+		while ($issue =& $issueIterator->next()) {
+			if ($issue->getPubId('doi')) {
+				$issues[] =& $issue;
+			}
+			unset($issue);
+		}
+		unset($issueIterator);
+
+		// Instantiate issue iterator.
+		import('lib.pkp.classes.core.ArrayItemIterator');
+		$rangeInfo = Handler::getRangeInfo('articles');
+		$iterator = new ArrayItemIterator($issues, $rangeInfo->getPage(), $rangeInfo->getCount());
+
+		// Prepare and display the issue template.
+		$templateMgr->assign_by_ref('issues', $iterator);
+		$templateMgr->display($this->getTemplatePath() . 'issues.tpl');
 	}
 
 	/**
@@ -685,6 +727,15 @@ class DOIExportPlugin extends ImportExportPlugin {
 		);
 		assert(isset($objectNames[$exportType]));
 		return $objectNames[$exportType];
+	}
+
+	/**
+	 * The selected object can be exported if it has a DOI.
+	 * @param $foundObject Issue|PublishedArticle|ArticleGalley|SuppFile
+	 * @return boolean
+	*/
+	function canBeExported($foundObject) {
+		return !is_null($foundObject->getPubId('doi'));
 	}
 
 	/**
@@ -945,40 +996,6 @@ class DOIExportPlugin extends ImportExportPlugin {
 		// Prepare and display the index page template.
 		$templateMgr->assign_by_ref('journal', $journal);
 		$templateMgr->display($this->getTemplatePath() . 'index.tpl');
-	}
-
-	/**
-	 * Display a list of issues for export.
-	 * @param $templateMgr TemplateManager
-	 * @param $journal Journal
-	 */
-	function _displayIssueList(&$templateMgr, &$journal) {
-		$this->setBreadcrumbs(array(), true);
-
-		// Retrieve all published issues.
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OJS_EDITOR));
-		$issueDao =& DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
-		$this->registerDaoHook('IssueDAO');
-		$issueIterator =& $issueDao->getPublishedIssues($journal->getId(), Handler::getRangeInfo('issues'));
-
-		// Filter only issues that have a DOI assigned.
-		$issues = array();
-		while ($issue =& $issueIterator->next()) {
-			if ($issue->getPubId('doi')) {
-				$issues[] =& $issue;
-			}
-			unset($issue);
-		}
-		unset($issueIterator);
-
-		// Instantiate issue iterator.
-		import('lib.pkp.classes.core.ArrayItemIterator');
-		$rangeInfo = Handler::getRangeInfo('articles');
-		$iterator = new ArrayItemIterator($issues, $rangeInfo->getPage(), $rangeInfo->getCount());
-
-		// Prepare and display the issue template.
-		$templateMgr->assign_by_ref('issues', $iterator);
-		$templateMgr->display($this->getTemplatePath() . 'issues.tpl');
 	}
 
 	/**
@@ -1295,7 +1312,7 @@ class DOIExportPlugin extends ImportExportPlugin {
 
 			// Retrieve the object(s).
 			$objects =& $this->_getObjectsFromIds($exportType, $objectIds, $journal->getId(), $errors);
-			if ($objects === false) {
+			if (empty($objects)) {
 				$this->cleanTmpfiles($exportPath, $exportFiles);
 				return false;
 			}
@@ -1390,10 +1407,10 @@ class DOIExportPlugin extends ImportExportPlugin {
 			// Add the objects to our result array.
 			if (!is_array($foundObjects)) $foundObjects = array($foundObjects);
 			foreach ($foundObjects as $foundObject) {
-				// Only export objects that have a DOI assigned.
+				// Only consider objects that should be exorted.
 				// NB: This may generate DOIs for the selected
 				// objects on the fly.
-				if (!is_null($foundObject->getPubId('doi'))) $objects[] =& $foundObject;
+				if ($this->canBeExported($foundObject)) $objects[] =& $foundObject;
 				unset($foundObject);
 			}
 			unset($foundObjects);
