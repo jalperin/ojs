@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/importexport/crossrefbb/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.crossrefbb.displayName">CrossRef Export/Registration Plugin</message>
+	<message key="plugins.importexport.crossrefbb.description">Export or register article metadata in CrossRef format.</message>
+
+	<message key="plugins.importexport.crossrefbb.intro"><![CDATA[
+		If you want to register DOIs with CrossRef, please follow the directions on the
+		<a href="http://..." target="_blank">CrossRef homepage</a>
+		to receive a username and password. If you do not have your own username and
+		password you'll still be able to export into the CrossRef XML format
+		but you cannot register your DOIs with CrossRef from within OJS. 
+		Please note that the password will be saved as plain text, i.e. not encrypted, due
+		to the CrossRef registration service requirements.
+	]]></message>
+
+	<message key="plugins.importexport.crossrefbb.settings.description"><![CDATA[Please <a href="{$settingsUrl}">configure</a> the CrossRef export/registration plug-in before using it for the first time.]]></message>
+ 
+	<message key="plugins.importexport.crossrefbb.settings.form.description">Please configure the CrossRef export/registration plug-in:</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.username">Username (symbol)</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.usernameRequired">Please enter the username (symbol) you got from CrossRef. The username may not contain colons.</message>
+
+	<message key="plugins.importexport.crossrefbb.export.unregistered">Export all unregistered articles</message>
+	<message key="plugins.importexport.crossrefbb.export.selectUnregistered">Select unregistered Articles</message>
+	<message key="plugins.importexport.crossrefbb.export.noUnregistered">All published articleshave already been registered (or none of them has a DOI assigned).</message>
+ 
+	<message key="plugins.importexport.crossrefbb.cliUsage"><![CDATA[Usage: 
+{$scriptName} {$pluginName} export xmlFileName journal_path {issues|articles} objectId1 [objectId2] ...
+{$scriptName} {$pluginName} register journal_path {issues|articles} objectId1 [objectId2] ...
+]]></message>
+</locale>
