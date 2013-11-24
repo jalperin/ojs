@@ -32,8 +32,8 @@ class CrossRefBBSettingsForm extends DOIExportSettingsForm {
 		parent::DOIExportSettingsForm($plugin, $journalId);
 
 		// Add form validation checks.
-		// The username is used in HTTP basic authentication and according to RFC2617 it therefore may not contain a colon.
-		$this->addCheck(new FormValidatorRegExp($this, 'username', FORM_VALIDATOR_OPTIONAL_VALUE, 'plugins.importexport.datacite.settings.form.usernameRequired', '/^[^:]+$/'));
+		$this->addCheck(new FormValidator($this, 'depositorName', 'required', 'plugins.importexport.crossrefbb.settings.form.depositorNameRequired'));
+		$this->addCheck(new FormValidatorEmail($this, 'depositorEmail', 'required', 'plugins.importexport.crossrefbb.settings.form.depositorEmailRequired'));
 	}
 
 
@@ -45,9 +45,11 @@ class CrossRefBBSettingsForm extends DOIExportSettingsForm {
 	 */
 	function getFormFields() {
 		return array(
+			'depositorName' => 'string',
+			'depositorEmail' => 'string',
 			'username' => 'string',
 			'password' => 'string'
-		);
+			);
 	}
 }
 

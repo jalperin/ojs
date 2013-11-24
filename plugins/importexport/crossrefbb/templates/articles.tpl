@@ -45,7 +45,7 @@
 			{iterate from=articles item=articleData}
 				{assign var=article value=$articleData.article}
 				{assign var=issue value=$articleData.issue}
-				{if $article->getData('crossref::registeredDoi')}
+				{if $article->getData('crossrefBB::registeredDoi')}
 					{capture assign="updateOrRegister"}{translate key="plugins.importexport.common.update"}{/capture}
 					{capture assign="updateOrRegisterDescription"}{translate key="plugins.importexport.common.updateDescription"}{/capture}
 				{else}

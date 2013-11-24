@@ -44,7 +44,7 @@
 
 			{iterate from=issues item=issue}
 				{assign var="issueId" value=$issue->getId()}
-				{if $issue->getData('crossref::registeredDoi')}
+				{if $issue->getData('crossrefBB::registeredDoi')}
 					{capture assign="updateOrRegister"}{translate key="plugins.importexport.common.update"}{/capture}
 					{capture assign="updateOrRegisterDescription"}{translate key="plugins.importexport.common.updateDescription"}{/capture}
 				{else}

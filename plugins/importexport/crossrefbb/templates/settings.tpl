@@ -23,7 +23,27 @@
 		<table width="100%" class="data">
 			<tr valign="top">
 				<td colspan="2">
-					<span class="instruct">{translate key="plugins.importexport.crossrefbb.intro"}</span>
+					<span class="instruct">{translate key="plugins.importexport.crossrefbb.settings.depositorIntro"}</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr valign="top">
+				<td width="20%" class="label">{fieldLabel name="depositorName" key="plugins.importexport.crossrefbb.settings.form.depositorName" required="true"}</td>
+				<td width="80%" class="value">
+					<input type="text" name="depositorName" value="{$depositorName|escape|default:$currentJournal->getSetting('supportName')|escape}" size="30" maxlength="60" id="depositorName" class="textField" />
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr valign="top">
+				<td width="20%" class="label">{fieldLabel name="depositorEmail" key="plugins.importexport.crossrefbb.settings.form.depositorEmail" required="true"}</td>
+				<td width="80%" class="value">
+					<input type="text" name="depositorEmail" value="{$depositorEmail|escape|default:$currentJournal->getSetting('supportEmail')|escape}" size="30" maxlength="90" id="depositorEmail" class="textField" />
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr valign="top">
+				<td colspan="2">
+					<span class="instruct">{translate key="plugins.importexport.crossrefbb.registrationIntro"}</span>
 				</td>
 			</tr>
 			<tr><td colspan="2">&nbsp;</td></tr>

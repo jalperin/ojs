@@ -14,7 +14,13 @@
 	<message key="plugins.importexport.crossrefbb.displayName">CrossRef Export/Registration Plugin</message>
 	<message key="plugins.importexport.crossrefbb.description">Export or register article metadata in CrossRef format.</message>
 
-	<message key="plugins.importexport.crossrefbb.intro"><![CDATA[
+	<message key="plugins.importexport.crossrefbb.settings.depositorIntro">Please enter the name and the email of the person responsible fot the CrossRef DOI deposit.</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.depositorName">Depositor name</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.depositorEmail">Depositor email</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.depositorNameRequired">Please enter the depositor name.</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.depositorEmailRequired">Please enter the depositor email.</message>
+	
+	<message key="plugins.importexport.crossrefbb.registrationIntro"><![CDATA[
 		If you want to register DOIs with CrossRef, please follow the directions on the
 		<a href="http://..." target="_blank">CrossRef homepage</a>
 		to receive a username and password. If you do not have your own username and
@@ -27,8 +33,8 @@
 	<message key="plugins.importexport.crossrefbb.settings.description"><![CDATA[Please <a href="{$settingsUrl}">configure</a> the CrossRef export/registration plug-in before using it for the first time.]]></message>
  
 	<message key="plugins.importexport.crossrefbb.settings.form.description">Please configure the CrossRef export/registration plug-in:</message>
-	<message key="plugins.importexport.crossrefbb.settings.form.username">Username (symbol)</message>
-	<message key="plugins.importexport.crossrefbb.settings.form.usernameRequired">Please enter the username (symbol) you got from CrossRef. The username may not contain colons.</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.username">Username</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.usernameRequired">Please enter the username you got from CrossRef.</message>
 
 	<message key="plugins.importexport.crossrefbb.export.unregistered">Export all unregistered articles</message>
 	<message key="plugins.importexport.crossrefbb.export.selectUnregistered">Select unregistered Articles</message>
