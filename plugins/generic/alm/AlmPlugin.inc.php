@@ -284,10 +284,25 @@ class AlmPlugin extends GenericPlugin {
 			$daysToStale = 29;
 		}
 
+        $cachedJson = false;
+        // if cache is stale, save the stale results and flush the cache
 		if (time() - $cache->getCacheTime() > 60 * 60 * 24 * $daysToStale) {
+            $cachedJson = $cache->getContents();
 			$cache->flush();
 		}
-		return $cache->getContents();
+
+        $resultJson = $cache->getContents();
+
+        // In cases where server is down (we get a false response)
+        // it is better to show an old (successful) response than nothing
+        if (!$resultJson && $cachedJson) {
+            $resultJson = $cachedJson;
+            $cache->setEntireCache($cachedJson);
+        } elseif (!$resultJson) {
+            $cache->flush();
+        }
+
+		return $resultJson;
 	}
 
 	/**
