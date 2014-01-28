@@ -166,7 +166,8 @@ class AlmPlugin extends GenericPlugin {
 		$downloadJson = $this->_buildDownloadStatsJson($totalHtml, $totalPdf, $byMonth, $byYear);
 
 		$almStatsJson = $this->_getAlmStats($article);
-		if (!$almStatsJson) {
+        $json = @json_decode($almStatsJson); // to be used to check for errors
+		if (!$almStatsJson || property_exists($json, 'error')) {
 			// The ALM stats answer comes with needed article info,
 			// so we build this information if no ALM stats response.
 			$almStatsJson = $this->_buildRequiredArticleInfoJson($article);
