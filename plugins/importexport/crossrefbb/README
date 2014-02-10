@@ -3,7 +3,7 @@
 === Version: 1.2
 === Author: Bozana Bokan <bozana.bokan@cedis.fu-berlin.de>
 === Author: Juan Pablo Alperin <juan@geeky.net>
-=== Last update: November 8, 2013
+=== Last update: November 30, 2013
 ================================
 
 About
@@ -20,6 +20,7 @@ complete terms of this license.
 System Requirements
 -------------------
 Same requirements as the OJS 2.4.x core.
+Additionaly CURL library.
 
 Installation
 ------------
@@ -40,12 +41,11 @@ Note
 In order to register DOIs with CrossRef from within OJS you will have to enter your username and password. 
 If you do not enter or have your own username and password you'll still be able to export into the 
 CrossRef XML format but you cannot register your DOIs from within OJS.
-Please note, that the passowrd will be saved as plain text, i.e. not encripted, due to CrossRef registration service requirements.
+Please note, that the password will be saved as plain text, i.e. not encrypted, due to CrossRef registration service requirements.
 
 Contact/Support
 ---------------
-Please email the author for support, bugfixes, or comments.
-Email: <juan@geeky.net>
+Please use the PKP support forum (http://pkp.sfu.ca/support/forum/), PKP Bugzilla (http://pkp.sfu.ca/bugzilla/) or email the authors for support, bugfixes, or comments.
 
 Version History
 ---------------

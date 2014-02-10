@@ -22,7 +22,7 @@
 	
 	<message key="plugins.importexport.crossrefbb.registrationIntro"><![CDATA[
 		If you want to register DOIs with CrossRef, please follow the directions on the
-		<a href="http://..." target="_blank">CrossRef homepage</a>
+		<a href="http://www.crossref.org" target="_blank">CrossRef homepage</a>
 		to receive a username and password. If you do not have your own username and
 		password you'll still be able to export into the CrossRef XML format
 		but you cannot register your DOIs with CrossRef from within OJS. 

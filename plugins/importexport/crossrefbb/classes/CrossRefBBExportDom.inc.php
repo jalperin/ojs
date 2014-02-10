@@ -122,8 +122,8 @@ class CrossRefBBExportDom extends DOIExportDom {
 	function &retrievePublicationObjects(&$object) {
 		// Initialize local variables.
 		$nullVar = null;
- 		$journal =& $this->getJournal();
- 		$cache =& $this->getCache();
+		$journal =& $this->getJournal();
+		$cache =& $this->getCache();
 
 		// Retrieve basic OJS objects.
 		$publicationObjects = parent::retrievePublicationObjects($object);
@@ -241,10 +241,6 @@ class CrossRefBBExportDom extends DOIExportDom {
 
 		/* Full Title of Journal */
 		$journalTitle = $journal->getLocalizedTitle();
-		// Attempt a fall back, in case the localized name is not set.
-		if ($journalTitle == '') {
-			$journalTitle = $journal->getLocalizedSetting('abbreviation');
-		}
 		XMLCustomWriter::createChildWithText($doc, $journalMetadataNode, 'full_title', $journalTitle);
 
 		/* Abbreviated title - defaulting to initials if no abbreviation found */
