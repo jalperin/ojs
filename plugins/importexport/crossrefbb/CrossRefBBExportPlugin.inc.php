@@ -142,23 +142,37 @@ class CrossRefBBExportPlugin extends DOIExportPlugin {
 	}
 
 	/**
-	 * The selected issue can be exported if it contains an article that has a DOI.
-	 * The selected article can be exported if it has a DOI.
+	 * The selected issue can be exported if it contains an article that has a DOI,
+	 * and the articles containing a DOI also have a date published.
+	 * The selected article can be exported if it has a DOI and a date published.
 	 * @param $foundObject Issue|PublishedArticle
-	 * @return boolean
+	 * @param $errors array
+	 * @return array|boolean
 	*/
-	function canBeExported($foundObject) {
+	function canBeExported($foundObject, &$errors) {
+		return true;
 		if (is_a($foundObject, 'Issue')) {
+			$export = false;
 			$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
 			$issueArticles =& $publishedArticleDao->getPublishedArticles($foundObject->getId());
 			foreach ($issueArticles as $issueArticle) {
-				if ($issueArticle->getPubId('doi')) {
-					return true;
+				if (!is_null($issueArticle->getPubId('doi'))) {
+					$export = true;
+					if (is_null($issueArticle->getDatePublished())) {
+						$errors[] = array('plugins.importexport.crossrefbb.export.error.articleDatePublishedMissing', $issueArticle->getId());
+						return false;
+					}
 				}
 			}
-			return false;
+			return $export;
 		}
-		return parent::canBeExported($foundObject);
+		if (is_a($foundObject, 'PublishedArticle')) {
+			if (is_null($foundObject->getDatePublished())) {
+				$errors[] = array('plugins.importexport.crossrefbb.export.error.articleDatePublishedMissing', $foundObject->getId());
+				return false;
+			}
+			return parent::canBeExported($foundObject, $errors);
+		}
 	}
 
 	/**

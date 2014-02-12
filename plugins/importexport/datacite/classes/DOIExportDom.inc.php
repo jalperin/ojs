@@ -189,7 +189,7 @@ class DOIExportDom {
 	 * @return string
 	 */
 	function getXmlSchemaVersion() {
-		assert(false);
+		return '';
 	}
 
 	/**
@@ -216,7 +216,7 @@ class DOIExportDom {
 		// Add root-level attributes.
 		XMLCustomWriter::setAttribute($rootElement, 'xmlns', $this->getNamespace());
 		XMLCustomWriter::setAttribute($rootElement, 'xmlns:xsi', DOI_EXPORT_XMLNS_XSI);
-		if ($this->getXMLSchemaVersion()) {
+		if ($this->getXMLSchemaVersion() != '') {
 			XMLCustomWriter::setAttribute($rootElement, 'version', $this->getXMLSchemaVersion());
 		}
 		XMLCustomWriter::setAttribute($rootElement, 'xsi:schemaLocation', $this->getXmlSchemaLocation());

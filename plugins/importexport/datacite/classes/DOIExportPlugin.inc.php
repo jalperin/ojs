@@ -732,9 +732,10 @@ class DOIExportPlugin extends ImportExportPlugin {
 	/**
 	 * The selected object can be exported if it has a DOI.
 	 * @param $foundObject Issue|PublishedArticle|ArticleGalley|SuppFile
-	 * @return boolean
+	 * @param $errors array
+	 * @return array|boolean
 	*/
-	function canBeExported($foundObject) {
+	function canBeExported($foundObject, &$errors) {
 		return !is_null($foundObject->getPubId('doi'));
 	}
 
@@ -1407,10 +1408,11 @@ class DOIExportPlugin extends ImportExportPlugin {
 			// Add the objects to our result array.
 			if (!is_array($foundObjects)) $foundObjects = array($foundObjects);
 			foreach ($foundObjects as $foundObject) {
-				// Only consider objects that should be exorted.
+				// Only consider objects that should be exported.
 				// NB: This may generate DOIs for the selected
 				// objects on the fly.
-				if ($this->canBeExported($foundObject)) $objects[] =& $foundObject;
+				if ($this->canBeExported($foundObject, $errors)) $objects[] =& $foundObject;
+				else return $falseVar;
 				unset($foundObject);
 			}
 			unset($foundObjects);
