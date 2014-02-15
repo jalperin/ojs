@@ -19,5 +19,5 @@
 
 	<message key="plugins.blocks.recentArticles.by">By</message>
 	<message key="plugins.blocks.recentArticles.fullText">Full Text</message>
-	<message key="plugins.blocks.recentArticles.latestVideos">Novos Vídeos</message>
+	<message key="plugins.blocks.recentArticles.latestVideos">Mais Vídeos</message>
 </locale>

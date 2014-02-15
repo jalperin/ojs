@@ -40,7 +40,7 @@ class WordpressHandler extends Handler {
 			if ( have_posts() ) {
 				the_post();
 				
-				$templateMgr->assign('pageTitleTranslated', get_the_title());
+//				$templateMgr->assign('pageTitleTranslated', get_the_title());
 			} else { 
 				$templateMgr->assign('noPost', true);
 			}
@@ -54,7 +54,7 @@ class WordpressHandler extends Handler {
 				$templateMgr->display($wordpressPlugin->getTemplatePath() . 'single.tpl');
 		} else if ( is_category() ) {
 			$catId = (int) Request::getUserVar('cat');
-			if ( $categoryName = get_cat_name($catId) ) {
+            if ( $categoryName = get_cat_name($catId) ) {
 				$templateMgr->assign("pageTitleTranslated", $categoryName);
 				$pageHierarchy = $templateMgr->get_template_vars('pageHierarchy');
 				$pageHierarchy[] = array(Request::url(null, 'blog'), 'plugins.generic.wordpress.blog');

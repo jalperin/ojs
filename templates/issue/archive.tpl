@@ -20,11 +20,11 @@
 			{assign var=notFirstYear value=1}
 		{else}
 			</div>
-			<br />
-			<div class="separator" style="clear:left;"></div>
+			{*<br />*}
+			{*<div class="separator" style="clear:left;"></div>*}
 		{/if}
 		<div style="float: left; width: 100%;">
-		<h3>{$issue->getYear()|escape}</h3>
+		{*<h3>{$issue->getYear()|escape}</h3>*}
 		{assign var=lastYear value=$issue->getYear()}
 	{/if}
 

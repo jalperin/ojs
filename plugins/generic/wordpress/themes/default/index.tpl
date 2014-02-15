@@ -7,8 +7,9 @@
 		{php} while (have_posts()) : the_post(); {/php}
 
 			<div {php} post_class() {/php} id="post-{php} the_ID(); {/php}">
-				<h2><a href="{php} the_permalink() {/php}" rel="bookmark" title="Permanent Link to {php} the_title_attribute(); {/php}">{php} the_title(); {/php}</a></h2>
-				<small>{php} the_time('F jS, Y') {/php} <!-- by {php} the_author() {/php} --></small>
+                {*<a href="{php} the_permalink() {/php}" rel="bookmark" title="Permanent Link to {php} the_title_attribute(); {/php}"> ...  </a>*}
+				<h2>{php} the_title(); {/php}</h2>
+				{*<small>{php} the_time('F jS, Y') {/php} <!-- by {php} the_author() {/php} --></small>*}
 
 				<div class="entry">
 					{php} the_content('Read the rest of this entry &raquo;'); {/php}

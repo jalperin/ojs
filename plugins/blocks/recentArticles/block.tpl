@@ -38,7 +38,7 @@
 	<td width="50%" valign="top">
 	{php}
 		wp_reset_query();
-		query_posts('&cat=6&posts_per_page=5');
+		query_posts('&cat=6&posts_per_page=3');
 		{/php}
 		{php} if (have_posts()) : {/php}
 			<h2>{translate key="plugins.blocks.recentArticles.latestVideos"}</h2>
@@ -47,6 +47,7 @@
 				<br />
 			{php} endwhile; {/php}
 		{php} endif; {/php}
+        <a href="{url page="blog" cat=6}" class="articleLink">{translate key="plugins.blocks.recentArticles.moreVideos"}</a>
 	</td>
  	</tr>
 </table>
