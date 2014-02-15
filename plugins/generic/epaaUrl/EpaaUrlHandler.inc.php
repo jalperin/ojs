@@ -29,8 +29,10 @@ class EpaaUrlHandler extends Handler {
 		$result =& $publishedArticleDAO->retrieve(
 			'SELECT pa.article_id
 				FROM published_articles pa JOIN articles a ON pa.article_id = a.article_id JOIN issues i ON pa.issue_id = i.issue_id
-			where i.public_issue_id = ? and a.pages = ?',
-			array($v, $n)
+			JOIN issue_settings s ON (i.issue_id = s.issue_id)
+			WHERE s.setting_name = ? AND setting_value = ?
+				AND a.pages = ?',
+			array('pub-id::publisher-id', $v, $n)
 		);
 
 		$articleId = isset($result->fields[0]) ? $result->fields[0] : false;
