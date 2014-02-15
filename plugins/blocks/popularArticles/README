@@ -1,0 +1,36 @@
+================================
+=== OJS Popular Articles Block Plugin
+=== Version: 1.0
+=== Author: Juan Pablo Alperin <pkp@alperin.ca>
+================================
+
+About
+-----
+This plugin for OJS 2 provides a sidebar block with the most popular articles publishes.  The plugin works on a per-journal basis.
+
+License
+-------
+This plugin is licensed under the GNU General Public License v2. See the file COPYING for the complete terms of this license.
+
+System Requirements
+-------------------
+Same requirements as the OJS 2.2 core.
+
+Installation
+------------
+- Copy the plugin contents in the plugins/block folder
+- place the sidebar block by going to Journal Management > Setup > Step 5 (The Look) and placing the block in the desired location
+
+
+Configuration
+------------
+This plugin currently lacks a configuration screen.  The only way to edit the settings are to edit the file:
+MostPopularArticlesBlockPlugin.inc.php.  By changing the parameters to the call to getMostPopularArticles (inside the getContents method) you can control how many articles are displayed and if only the most recent months are used to determine popularity.
+
+Examples:
+$mostPopularArticlesDAO->getMostPopularArticles($journal->getJournalId(), 10));  (default) gets the 10 most popular articles of all time
+$mostPopularArticlesDAO->getMostPopularArticles($journal->getJournalId(), 8, 1)); gets the 8 most popular articles in the last month 
+
+Contact/Support
+---------------
+Please email the authors for support, bugfixes, or comments.
