@@ -344,6 +344,9 @@ class AlmPlugin extends GenericPlugin {
 		$totalPdf = 0;
 		$byMonth = array();
 		$byYear = array();
+
+		if (!is_array($stats)) $stats = array();
+
 		foreach ($stats as $record) {
 			$views = $record[STATISTICS_METRIC];
 			$fileType = $record[STATISTICS_DIMENSION_FILE_TYPE];
