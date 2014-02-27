@@ -49,11 +49,36 @@ class AuthorBiosBlockPlugin extends BlockPlugin {
 		switch (Request::getRequestedPage() . '/' . Request::getRequestedOp()) {
 			case 'article/view':
 				if (!$templateMgr->get_template_vars('article')) return '';
+
+                $templateMgr->register_function('get_gravatar', array(&$this, 'getGravatar'));
+
 				return parent::getContents($templateMgr);
 			default:
 				return '';
 		}
 	}
+
+
+    /**
+     * Get the gravatar URL
+     * @param $params array
+     * @param $smarty object
+     */
+    function getGravatar($params, &$smarty) {
+        $author =& $params['author'];
+        $email = $author->getEmail();
+
+        if ($email) {
+            $url = 'http://www.gravatar.com/avatar/';
+            $url .= md5( strtolower( trim( $email ) ) );
+            $url .= "?s=60&d=mm&r=g&d=" . urlencode('http://epaa.asu.edu/clear.gif');
+
+            $img = '<img src="' . $url . '"' . ' align="left" hspace=5 vspace=5 />';;
+            return $img;
+        }
+
+        return '';
+    }
 }
 
 ?>
