@@ -108,10 +108,15 @@ class CrossRefBBExportPlugin extends DOIExportPlugin {
 		while ($issue =& $issueIterator->next()) {
 			$issueArticles =& $publishedArticleDao->getPublishedArticles($issue->getId());
 			$issueArticlesNo = 0;
+			$allArticlesRegistered = true;
 			foreach ($issueArticles as $issueArticle) {
-				if ($issueArticle->getPubId('doi')) {
+				$articleRegistered = $issueArticle->getData('crossrefBB::registeredDoi');
+				if ($issueArticle->getPubId('doi') && !isset($articleRegistered)) {
 					if (!in_array($issue, $issues)) $issues[] = $issue;
 					$issueArticlesNo++;
+				}
+				if ($allArticlesRegistered && !isset($articleRegistered)) {
+					$allArticlesRegistered = false;
 				}
 			}
 			$numArticles[$issue->getId()] = $issueArticlesNo;
@@ -125,6 +130,7 @@ class CrossRefBBExportPlugin extends DOIExportPlugin {
 		// Prepare and display the issue template.
 		$templateMgr->assign_by_ref('issues', $iterator);
 		$templateMgr->assign('numArticles', $numArticles);
+		$templateMgr->assign('allArticlesRegistered', $allArticlesRegistered);
 		$templateMgr->display($this->getTemplatePath() . 'issues.tpl');
 	}
 
@@ -150,7 +156,6 @@ class CrossRefBBExportPlugin extends DOIExportPlugin {
 	 * @return array|boolean
 	*/
 	function canBeExported($foundObject, &$errors) {
-		return true;
 		if (is_a($foundObject, 'Issue')) {
 			$export = false;
 			$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
@@ -195,6 +200,28 @@ class CrossRefBBExportPlugin extends DOIExportPlugin {
 		file_put_contents($exportFileName, XMLCustomWriter::getXML($doc));
 		$generatedFiles = array($exportFileName => &$objects);
 		return $generatedFiles;
+	}
+
+	/**
+	 * @see DOIExportPlugin::processMarkRegistered()
+	 */
+	function processMarkRegistered(&$request, $exportType, &$objects, &$journal) {
+		$this->import('classes.CrossRefBBExportDom');
+		$dom = new CrossRefBBExportDom($request, $this, $journal, $this->getCache());
+		foreach($objects as $object) {
+			if (is_a($object, 'Issue')) {
+				$articlesByIssue =& $dom->retrieveArticlesByIssue($object);
+				foreach ($articlesByIssue as $article) {
+					if ($article->getPubId('doi')) {
+						$this->markRegistered($request, $article, CROSSREFBB_API_TESTPREFIX);
+					}
+				}
+			} else {
+				if ($object->getPubId('doi')) {
+					$this->markRegistered($request, $object, CROSSREFBB_API_TESTPREFIX);
+				}
+			}
+		}
 	}
 
 	/**

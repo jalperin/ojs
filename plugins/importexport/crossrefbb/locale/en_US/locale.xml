@@ -19,6 +19,7 @@
 	<message key="plugins.importexport.crossrefbb.settings.form.depositorEmail">Depositor email</message>
 	<message key="plugins.importexport.crossrefbb.settings.form.depositorNameRequired">Please enter the depositor name.</message>
 	<message key="plugins.importexport.crossrefbb.settings.form.depositorEmailRequired">Please enter the depositor email.</message>
+	<message key="plugins.importexport.crossrefbb.settings.form.automaticRegistration">Use the automatic registration</message>
 	
 	<message key="plugins.importexport.crossrefbb.registrationIntro"><![CDATA[
 		If you want to register DOIs with CrossRef, please follow the directions on the

@@ -61,6 +61,13 @@
 				</td>
 			</tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr valign="top">
+				<td width="20%" class="label">{fieldLabel name="automaticRegistration" key="plugins.importexport.crossrefbb.settings.form.automaticRegistration"}</td>
+				<td width="80%" class="value">
+					<input type="checkbox" name="automaticRegistration" id="automaticRegistration" value="1" {if $automaticRegistration} checked="checked"{/if} />&nbsp;
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
 		</table>
 
 		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

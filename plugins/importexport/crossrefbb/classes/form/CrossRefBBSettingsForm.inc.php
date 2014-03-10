@@ -48,7 +48,8 @@ class CrossRefBBSettingsForm extends DOIExportSettingsForm {
 			'depositorName' => 'string',
 			'depositorEmail' => 'string',
 			'username' => 'string',
-			'password' => 'string'
+			'password' => 'string',
+			'automaticRegistration' => 'bool'
 			);
 	}
 }

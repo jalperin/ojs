@@ -159,8 +159,10 @@ class DOIExportPlugin extends ImportExportPlugin {
 				// Fix the operation name so that we can check
 				// operations in a single switch statement.
 				$action = 'register';
-			} else {
+			} elseif ($request->isPost() && !is_null($request->getUserVar('export'))) {
 				$action = 'export';
+			}elseif ($request->isPost() && !is_null($request->getUserVar('markRegistered'))) {
+				$action = 'markRegistered';
 			}
 			$target = $multiSelect ? substr($op, 6, -1) : substr($op, 6);
 		// Check whether we serve a registration request.
@@ -197,6 +199,7 @@ class DOIExportPlugin extends ImportExportPlugin {
 		switch($action) {
 			case 'export':
 			case 'register':
+			case 'markRegistered':
 				// Find the objects to be exported (registered).
 				if ($target == 'all') {
 					$exportSpec = array();
@@ -218,6 +221,22 @@ class DOIExportPlugin extends ImportExportPlugin {
 				if ($action == 'export') {
 					// Export selected objects.
 					$result = $this->exportObjects($request, $exportSpec, $journal);
+				} elseif ($action == 'markRegistered') {
+					foreach($exportSpec as $exportType => $objectIds) {
+						// Normalize the object id(s) into an array.
+						if (is_scalar($objectIds)) $objectIds = array($objectIds);
+						// Retrieve the object(s).
+						$objects =& $this->_getObjectsFromIds($exportType, $objectIds, $journal->getId(), $errors);
+						$this->processMarkRegistered($request, $exportType, $objects, $journal);
+					}
+					// Redisplay the changed object list.
+					$listAction = $target . ($target == 'all' ? '' : 's');
+					$request->redirect(
+						null, null, null,
+						array('plugin', $this->getName(), $listAction),
+						($this->isTestMode($request) ? array('testMode' => 1) : null)
+					);
+					break;
 				} else {
 					// Register selected objects.
 					$result = $this->registerObjects($request, $exportSpec, $journal);
@@ -755,6 +774,17 @@ class DOIExportPlugin extends ImportExportPlugin {
 	 *  files together with the contained objects or false if not successful.
 	 */
 	function generateExportFiles(&$request, $exportType, &$objects, $targetPath, &$journal, &$errors) {
+		assert(false);
+	}
+
+	/**
+	 * Process the marking of the selected objects as registered.
+	 * @param $request Request
+	 * @param $exportType integer
+	 * @param $objects array
+	 * @param $journal Journal
+	 */
+	function processMarkRegistered(&$request, $exportType, &$objects, &$journal) {
 		assert(false);
 	}
 

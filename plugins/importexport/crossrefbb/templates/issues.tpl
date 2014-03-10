@@ -44,7 +44,7 @@
 
 			{iterate from=issues item=issue}
 				{assign var="issueId" value=$issue->getId()}
-				{if $issue->getData('crossrefBB::registeredDoi')}
+				{if $allArticlesRegistered}
 					{capture assign="updateOrRegister"}{translate key="plugins.importexport.common.update"}{/capture}
 					{capture assign="updateOrRegisterDescription"}{translate key="plugins.importexport.common.updateDescription"}{/capture}
 				{else}
@@ -85,6 +85,8 @@
 			{if !empty($testMode)}<input type="hidden" name="testMode" value="1" />{/if}
 			{if $hasCredentials}
 				<input type="submit" name="register" value="{translate key="plugins.importexport.common.register"}" title="{translate key="plugins.importexport.common.registerDescription.multi"}" class="button defaultButton"/>
+				&nbsp;
+				<input type="submit" name="markRegistered" value="{translate key="plugins.importexport.common.markRegistered"}" title="{translate key="plugins.importexport.common.markRegisteredDescription"}" class="button"/>
 				&nbsp;
 			{/if}
 			<input type="submit" name="export" value="{translate key="common.export"}" title="{translate key="plugins.importexport.common.exportDescription"}" class="button{if !$hasCredentials}  defaultButton{/if}"/>
