@@ -899,6 +899,10 @@ class IssueManagementHandler extends EditorHandler {
 		$journal =& $request->getJournal();
 		$journalId = $journal->getId();
 
+        $issue->setCurrent(1);
+        $issue->setPublished(1);
+        $issue->setDatePublished(Core::getCurrentDate());
+
 		$articleSearchIndex = null;
 		if (!$issue->getPublished()) {
 			// Set the status of any attendant queued articles to STATUS_PUBLISHED.
@@ -909,6 +913,9 @@ class IssueManagementHandler extends EditorHandler {
 				$article =& $articleDao->getArticle($publishedArticle->getId());
 				if ($article && $article->getStatus() == STATUS_QUEUED) {
 					$article->setStatus(STATUS_PUBLISHED);
+                    if ($article && !$article->getDatePublished()) {
+                        $article->setDatePublished($issue->getDatePublished());
+                    }
 					$article->stampStatusModified();
 					$articleDao->updateArticle($article);
 					if (!$articleSearchIndex) {
@@ -923,10 +930,6 @@ class IssueManagementHandler extends EditorHandler {
 				unset($article);
 			}
 		}
-
-		$issue->setCurrent(1);
-		$issue->setPublished(1);
-		$issue->setDatePublished(Core::getCurrentDate());
 
 		// If subscriptions with delayed open access are enabled then
 		// update open access date according to open access delay policy
@@ -1004,6 +1007,7 @@ class IssueManagementHandler extends EditorHandler {
 		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
 		$publishedArticles =& $publishedArticleDao->getPublishedArticles($issueId);
 		foreach ($publishedArticles as $article) {
+            // TODO: unset publication dates on the articles?
 			$articleTombstoneManager->insertArticleTombstone($article, $journal);
 		}
 		$request->redirect(null, null, 'futureIssues');

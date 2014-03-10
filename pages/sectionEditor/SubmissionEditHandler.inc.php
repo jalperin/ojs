@@ -2598,6 +2598,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 
 		if ($issue && $issue->getPublished()) {
 			$submission->setStatus(STATUS_PUBLISHED);
+            $submission->setDatePublished(Core::getCurrentDate());  // If the issue is published we set the pub date
 			// delete article tombstone
 			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
 			$tombstoneDao->deleteByDataObjectId($submission->getId());
@@ -2618,11 +2619,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 	 */
 	function setDatePublished($args, $request) {
 		$articleId = (int) array_shift($args);
-		$issueId = (int) $request->getUserVar('issueId');
 		$this->validate($articleId, SECTION_EDITOR_ACCESS_EDIT);
-
-		$journal =& $request->getJournal();
-		$submission =& $this->submission;
 
 		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
 		$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($articleId);
