@@ -1525,6 +1525,13 @@ class DOIExportPlugin extends ImportExportPlugin {
 			array('contents' => __($message, $params))
 		);
 	}
+
+    /**
+     * @see AcronPlugin::parseCronTab()
+     */
+    function callbackParseCronTab($hookName, $args) {
+        return false;
+    }
 }
 
 ?>
