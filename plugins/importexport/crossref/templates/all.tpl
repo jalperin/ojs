@@ -29,17 +29,18 @@
 	<form action="{plugin_url path="exportAll"}" method="post" id="exportAllForm">
 		<table width="100%" class="listing">
 			<tr>
-				<td colspan="5" class="headseparator">&nbsp;</td>
+				<td colspan="6" class="headseparator">&nbsp;</td>
 			</tr>
 			<tr class="heading" valign="bottom">
 				<td width="5%">&nbsp;</td>
 				<td width="5%">&nbsp;</td>
-				<td width="25%">{translate key="issue.issue"}</td>
+				<td width="20%">{translate key="issue.issue"}</td>
 				<td width="40%">{translate key="article.title"}</td>
-				<td width="25%">{translate key="article.authors"}</td>
+				<td width="20%">{translate key="article.authors"}</td>
+				<td width="10%">{translate key="common.status"}</td>
 			</tr>
 			<tr>
-				<td colspan="5" class="headseparator">&nbsp;</td>
+				<td colspan="6" class="headseparator">&nbsp;</td>
 			</tr>
 
 			{assign var=noObjects value=true}
@@ -54,18 +55,19 @@
 						<td><a href="{url page="issue" op="view" path=$issue->getId()}" class="action">{$issue->getIssueIdentification()|strip_tags}</a></td>
 						<td><a href="{url page="article" op="view" path=$article->getId()}" class="action">{$article->getLocalizedTitle()|strip_unsafe_html}</a></td>
 						<td>{$article->getAuthorString()|escape}</td>
+						<td>{$article->getData($depositStatusSettingName)|escape}</td>
 					</tr>
 					<tr>
-						<td colspan="5" class="separator">&nbsp;</td>
+						<td colspan="6" class="separator">&nbsp;</td>
 					</tr>
 				{/if}
 			{/foreach}
 			{if $noObjects}
 				<tr>
-					<td colspan="5" class="nodata">{translate key="plugins.importexport.crossref.export.noUnregistered"}</td>
+					<td colspan="6" class="nodata">{translate key="plugins.importexport.crossref.export.noUnregistered"}</td>
 				</tr>
 				<tr>
-					<td colspan="5" class="endseparator">&nbsp;</td>
+					<td colspan="6" class="endseparator">&nbsp;</td>
 				</tr>
 			{/if}
 		</table>

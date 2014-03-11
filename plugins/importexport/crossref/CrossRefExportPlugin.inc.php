@@ -160,6 +160,7 @@ class CrossRefExportPlugin extends DOIExportPlugin {
 
 		// Prepare and display the template.
 		$templateMgr->assign_by_ref('articles', $this->_getUnregisteredArticles($journal));
+		$templateMgr->assign('depositStatusSettingName', $this->getDepositStatusSettingName());
 		$templateMgr->display($this->getTemplatePath() . 'all.tpl');
 	}
 
@@ -306,7 +307,7 @@ class CrossRefExportPlugin extends DOIExportPlugin {
 
         curl_close($curlCh);
 
-        $articleDao->updateSetting($article->getId(), $this->getPluginId() . '::' . CROSSREF_DEPOSIT_STATUS, $result, 'string');
+        $articleDao->updateSetting($article->getId(), $this->getDepositStatusSettingName(), $result, 'string');
         // if successful, mark as registered
         if (false) {
             $this->markRegistered($request, $article, CROSSREFBB_API_TESTPREFIX);
@@ -322,6 +323,10 @@ class CrossRefExportPlugin extends DOIExportPlugin {
         error_log($this->getPluginPath() . DIRECTORY_SEPARATOR . 'scheduledTasks.xml');
 
         return false;
+    }
+
+    function getDepositStatusSettingName() {
+    	return $this->getPluginId() . '::' . CROSSREF_DEPOSIT_STATUS;
     }
 }
 

@@ -52,6 +52,13 @@ class CrossRefSettingsForm extends DOIExportSettingsForm {
 			'automaticRegistration' => 'bool'
 			);
 	}
+
+	/**
+	 * @see DOIExportSettingsForm::isOptional()
+	 */
+	function isOptional($settingName) {
+		return in_array($settingName, array('username', 'password', 'automaticRegistration'));
+	}
 }
 
 ?>
