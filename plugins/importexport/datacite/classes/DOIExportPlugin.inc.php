@@ -81,6 +81,9 @@ class DOIExportPlugin extends ImportExportPlugin {
 	function register($category, $path) {
 		$success = parent::register($category, $path);
 		$this->addLocaleData();
+
+        HookRegistry::register('AcronPlugin::parseCronTab', array($this, 'callbackParseCronTab'));
+
 		return $success;
 	}
 

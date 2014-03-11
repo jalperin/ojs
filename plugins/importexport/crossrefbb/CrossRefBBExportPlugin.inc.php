@@ -201,50 +201,60 @@ class CrossRefBBExportPlugin extends DOIExportPlugin {
 	 * @see DOIExportPlugin::registerDoi()
 	 */
 	function registerDoi(&$request, &$journal, &$objects, $file) {
-		// Prepare HTTP session.
-		$curlCh = curl_init ();
-		curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curlCh, CURLOPT_POST, true);
+        // Prepare HTTP session.
+        $curlCh = curl_init ();
+        curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlCh, CURLOPT_POST, true);
 
-		$username = $this->getSetting($journal->getId(), 'username');
-		$password = $this->getSetting($journal->getId(), 'password');
+        $username = $this->getSetting($journal->getId(), 'username');
+        $password = $this->getSetting($journal->getId(), 'password');
 
-		// Transmit XML data.
-		assert(is_readable($file));
-/*
-		if ($this->isTestMode($request)) {
-			curl_setopt($curlCh, CURLOPT_URL, CROSSREFBB_API_URL_DEV . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
-		} else {
-			curl_setopt($curlCh, CURLOPT_URL, CROSSREFBB_API_URL . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
-		}
-*/
-		curl_setopt($curlCh, CURLOPT_URL, CROSSREFBB_API_URL_DEV . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
-		curl_setopt($curlCh, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
-		curl_setopt($curlCh, CURLOPT_POSTFIELDS, array('fname' => '@/'.realpath($file)));
+        // Transmit XML data.
+        assert(is_readable($file));
+        /*
+                if ($this->isTestMode($request)) {
+                    curl_setopt($curlCh, CURLOPT_URL, CROSSREFBB_API_URL_DEV . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
+                } else {
+                    curl_setopt($curlCh, CURLOPT_URL, CROSSREFBB_API_URL . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
+                }
+        */
+        curl_setopt($curlCh, CURLOPT_URL, CROSSREFBB_API_URL_DEV . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
+        curl_setopt($curlCh, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+        curl_setopt($curlCh, CURLOPT_POSTFIELDS, array('fname' => '@/'.realpath($file)));
 
-		$result = true;
-		$response = curl_exec($curlCh);
-		if ($response === false) {
-			$result = array(array('plugins.importexport.common.register.error.mdsError', 'No response from server.'));
-		} else {
-			$status = curl_getinfo($curlCh, CURLINFO_HTTP_CODE);
-			if ($status != CROSSREFBB_API_RESPONSE_OK) {
-				$result = array(array('plugins.importexport.common.register.error.mdsError', "$status - $response"));
-			}
-		}
+        $result = true;
+        $response = curl_exec($curlCh);
+        if ($response === false) {
+            $result = array(array('plugins.importexport.common.register.error.mdsError', 'No response from server.'));
+        } else {
+            $status = curl_getinfo($curlCh, CURLINFO_HTTP_CODE);
+            if ($status != CROSSREFBB_API_RESPONSE_OK) {
+                $result = array(array('plugins.importexport.common.register.error.mdsError', "$status - $response"));
+            }
+        }
 
-		curl_close($curlCh);
+        curl_close($curlCh);
 
-		if ($result === true) {
-			// Mark all objects as registered.
-			foreach($objects as $object) {
-				$this->markRegistered($request, $object, CROSSREFBB_API_TESTPREFIX);
-			}
-		}
+        // FIXME: move this functionality elsewhere
+        if ($result === true) {
+            // Mark all objects as registered.
+            foreach($objects as $object) {
+                $this->markRegistered($request, $object, CROSSREFBB_API_TESTPREFIX);
+            }
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
+    /**
+     * @see AcronPlugin::parseCronTab()
+     */
+    function callbackParseCronTab($hookName, $args) {
+        $taskFilesPath =& $args[0];
+        $taskFilesPath[] = $this->getPluginPath() . DIRECTORY_SEPARATOR . 'scheduledTasks.xml';
+
+        return false;
+    }
 }
 
 ?>
