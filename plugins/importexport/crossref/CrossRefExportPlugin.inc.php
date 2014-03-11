@@ -22,6 +22,9 @@ define('CROSSREF_API_RESPONSE_OK', 200);
 //define('CROSSREF_API_URL', 'http://doi.crossref.org/servlet/deposit');
 define('CROSSREF_API_URL_DEV', 'http://test.crossref.org/servlet/deposit');
 
+// The name of the setting used to save the registered DOI.
+define('CROSSREF_DEPOSIT_STATUS', 'depositStatus');
+
 // Test DOI prefix
 define('CROSSREF_API_TESTPREFIX', '10.1234');
 
@@ -270,6 +273,44 @@ class CrossRefExportPlugin extends DOIExportPlugin {
         curl_close($curlCh);
 
         return $result;
+    }
+
+    /**
+     * TODO: this function still needs work
+     */
+    function updateDepositStatus(&$request, &$journal, $article) {
+        $articleDao =& DAORegistry::getDAO('ArticleDAO');  /* @var $articleDao ArticleDAO */
+
+        // Prepare HTTP session.
+        $curlCh = curl_init ();
+        curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlCh, CURLOPT_POST, true);
+
+        $username = $this->getSetting($journal->getId(), 'username');
+        $password = $this->getSetting($journal->getId(), 'password');
+
+        // FIXME: use Karl's new API
+
+        curl_setopt($curlCh, CURLOPT_URL, CROSSREF_API_URL_DEV . '?operation=doMDUpload&login_id='.$username.'&login_passwd='.$password);
+
+        $result = true;
+        $response = curl_exec($curlCh);
+        if ($response === false) {
+            $result = array(array('plugins.importexport.common.register.error.mdsError', 'No response from server.'));
+        } else {
+            $status = curl_getinfo($curlCh, CURLINFO_HTTP_CODE);
+            if ($status != CROSSREF_API_RESPONSE_OK) {
+                $result = array(array('plugins.importexport.common.register.error.mdsError', "$status - $response"));
+            }
+        }
+
+        curl_close($curlCh);
+
+        $articleDao->updateSetting($article->getId(), $this->getPluginId() . '::' . CROSSREF_DEPOSIT_STATUS, $result, 'string');
+        // if successful, mark as registered
+        if (false) {
+            $this->markRegistered($request, $article, CROSSREFBB_API_TESTPREFIX);
+        }
     }
 
     /**

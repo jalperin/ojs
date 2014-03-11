@@ -1319,6 +1319,7 @@ class DOIExportPlugin extends ImportExportPlugin {
 			$issueDao = DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
 			$issue = $issueDao->getIssueById($issueId, $journal->getId(), true);
 			assert(is_a($issue, 'Issue'));
+            $nullVar = null;
 			$cache->add($issue, $nullVar);
 			unset($issue);
 		}

@@ -55,8 +55,6 @@ class ArticleInfoSender extends ScheduledTask {
 		$journals = $this->_getJournals();
         $request =& Application::getRequest();
 
-
-
         foreach ($journals as $journal) {
             $unregisteredArticles = $plugin->_getUnregisteredArticles($journal);
 
@@ -64,17 +62,29 @@ class ArticleInfoSender extends ScheduledTask {
             foreach ($unregisteredArticles as $articleData) {
                 $article = $articleData['article'];
                 if (is_a($article, 'PublishedArticle')) {
-                    array_push($unregisteredArticlesIds, $article->getId());
+                    $unregisteredArticlesIds[$article->getId()] = $article;
                 }
             }
 
+            $toBeDepositedIds = array();
+            foreach ($unregisteredArticlesIds as $id => $article) {
+                $status = $plugin->updateDepositStatus($request, $journal, $article->getPubId('doi'));
 
 
+                if ('not registered') {
 
-            $exportSpec = array(DOI_EXPORT_ARTICLES => $unregisteredArticlesIds);
+                } else {
+                    array_push($toBeDepositedIds, $id);
+                }
 
-            $result = $plugin->registerObjects($request, $exportSpec, $journal);
+            }
 
+            // If there are unregistered things and we want automatic deposits
+            if (count($toBeDepositedIds) && $plugin->getSetting('automaticRegistration')) {
+                $exportSpec = array(DOI_EXPORT_ARTICLES => $unregisteredArticlesIds);
+
+                $result = $plugin->registerObjects($request, $exportSpec, $journal);
+            }
 		}
 
     }
