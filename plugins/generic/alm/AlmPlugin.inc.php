@@ -361,9 +361,9 @@ class AlmPlugin extends GenericPlugin {
 					// switch is considered a loop for purposes of continue
 					continue 2;
 			}
-			$year = date('Y', strtotime($record[STATISTICS_DIMENSION_MONTH]. '00'));
-			$month = date('n', strtotime($record[STATISTICS_DIMENSION_MONTH] . '00'));
-			$yearMonth = $year . '-' . $month;
+			$year = date('Y', strtotime($record[STATISTICS_DIMENSION_MONTH]. '01'));
+			$month = date('n', strtotime($record[STATISTICS_DIMENSION_MONTH] . '01'));
+			$yearMonth = date('Ym', strtotime($record[STATISTICS_DIMENSION_MONTH] . '01'));
 
 			if (!isset($byYear[$year])) $byYear[$year] = array();
 			if (!isset($byYear[$year][$fileType])) $byYear[$year][$fileType] = 0;
@@ -408,9 +408,11 @@ class AlmPlugin extends GenericPlugin {
 		if (count($data)) {
 			$byTime = array();
 			foreach ($data as $date => $fileTypes) {
-                // strtotime sometimes fails on just a year (YYYY), it treats it as a time (HH:mm)
-                // use special handling for this case
-                $year = (strlen($date) == 4)?strval($date):date('Y', strtotime($date));
+                // strtotime sometimes fails on just a year (YYYY) (it treats it as a time (HH:mm))
+				// and sometimes on YYYYMM
+                // So make sure $date has all 3 parts 
+				$date = str_pad($date, 8, "01");
+                $year = date('Y', strtotime($date));
 				if ($isMonthDimension) {
 					$month = date('n', strtotime($date));
 				}
