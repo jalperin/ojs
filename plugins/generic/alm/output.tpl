@@ -11,6 +11,7 @@
 <div class="separator"></div>
 <a name="alm"></a>
 <h4>{translate key="plugins.generic.alm.title"}</h4>
+<p>{translate key="epaa.viewsSince"} </p>
 <div id="alm" class="alm"><div id="loading">{translate key="plugins.generic.alm.loading"}</div></div>
 
 <br />

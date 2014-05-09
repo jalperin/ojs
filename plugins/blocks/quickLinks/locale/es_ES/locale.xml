@@ -19,6 +19,5 @@
 	<!-- NOT FROM THIS PLUGIN.  SITE WIDE -->
 	<message key="epaa.journalDesc">Revista académica evaluada por pares, independiente, de acceso abierto y multilingüe</message>	
 	<message key="epaa.support">Apoye a AAPE</message>
-	<message key="epaa.articleViews">Este artículo ha sido visto:</message>
-	<message key="epaa.timesSince">veces desde el</message>	
+    <message key="epaa.viewsSince">"PDF Views" solo reflejan el uso desde julio 2013</message>
 </locale>

@@ -18,8 +18,7 @@
 	
 	<!-- NOT FROM THIS PLUGIN.  SITE WIDE -->
 	<message key="epaa.journalDesc">Revista acadêmica, avaliada por pares, independente, de acesso aberto, e multilíngüe</message>	
-	<message key="epaa.support">Suporte AAPE</message>	
+	<message key="epaa.support">Suporte AAPE</message>
 
-	<message key="epaa.articleViews">Este artigo foi visto por</message>
-	<message key="epaa.timesSince">vezes desde</message>	
+    <message key="epaa.viewsSince">"PDF views" somente refletem o uso desde julho 2013</message>
 </locale>
