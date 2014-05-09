@@ -120,7 +120,7 @@
 	{else}
 		{assign var=pubId value=$pubIdPlugin->getPubId($pubObject, true)}{* Preview rather than assign a pubId *}
 	{/if}
-	{if $pubId}
+	{if $pubId && $issue->getYear() >= 2013}
 		<br />
 		<br />
 		{$pubIdPlugin->getPubIdDisplayType()|escape}: {if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}</a>{else}{$pubId|escape}{/if}
@@ -130,6 +130,6 @@
 {include file="article/comments.tpl"}
 
 <div class="separator">&nbsp;</div>
-{*<p>{translate key="epaa.articleViews"} {$article->getViews()} {translate key="epaa.timesSince"} {$article->getDatePublished()|date_format:"$dateFormatLong"}</p>*}
+{*late <p>{transkey="epaa.articleViews"} {$article->getViews()} {translate key="epaa.timesSince"} {$article->getDatePublished()|date_format:"$dateFormatLong"}</p>*}
 
 {include file="article/footer.tpl"}
