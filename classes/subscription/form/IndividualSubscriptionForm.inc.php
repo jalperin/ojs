@@ -48,7 +48,7 @@ class IndividualSubscriptionForm extends SubscriptionForm {
 
 		$subscriptionTypeCount = count($this->subscriptionTypes);
 		if ($subscriptionTypeCount == 0) {
-			$this->addError('typeId', __('manager.subscriptions.form.typeRequired'));
+			$this->addError('typeId', PKPLocale::translate('manager.subscriptions.form.typeRequired'));
 			$this->addErrorField('typeId');
 		}
 

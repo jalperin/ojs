@@ -59,14 +59,14 @@ class AlmPlugin extends GenericPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.alm.displayName');
+		return PKPLocale::translate('plugins.generic.alm.displayName');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.generic.alm.description');
+		return PKPLocale::translate('plugins.generic.alm.description');
 	}
 
 	/**
@@ -75,7 +75,7 @@ class AlmPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.alm.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('plugins.generic.alm.settings'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}
@@ -100,7 +100,7 @@ class AlmPlugin extends GenericPlugin {
 					if ($form->validate()) {
 						$form->execute();
 						$message = NOTIFICATION_TYPE_SUCCESS;
-						$messageParams = array('contents' => __('plugins.generic.alm.settings.saved'));
+						$messageParams = array('contents' => PKPLocale::translate('plugins.generic.alm.settings.saved'));
 						return false;
 					} else {
 						$form->display();
@@ -465,7 +465,7 @@ class AlmPlugin extends GenericPlugin {
 	function _buildDownloadStatsJson($totalHtml, $totalPdf, $byMonth, $byYear) {
 		$response = array(
 			'name' => 'ojsViews',
-			'display_name' => __('plugins.generic.alm.thisJournal'),
+			'display_name' => PKPLocale::translate('plugins.generic.alm.thisJournal'),
 			'events_url' => null,
 			'metrics' => $this->_getStatsTotal($totalHtml, $totalPdf),
 			'by_day' => null,

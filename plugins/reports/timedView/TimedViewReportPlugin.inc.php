@@ -54,11 +54,11 @@ class TimedViewReportPlugin extends ReportPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.reports.timedView.displayName');
+		return PKPLocale::translate('plugins.reports.timedView.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.reports.timedView.description');
+		return PKPLocale::translate('plugins.reports.timedView.description');
 	}
 
 	/**

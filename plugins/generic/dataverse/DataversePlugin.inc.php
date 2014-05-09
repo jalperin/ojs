@@ -115,11 +115,11 @@ class DataversePlugin extends GenericPlugin {
   }
 
 	function getDisplayName() {
-		return __('plugins.generic.dataverse.displayName');
+		return PKPLocale::translate('plugins.generic.dataverse.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.dataverse.description');
+		return PKPLocale::translate('plugins.generic.dataverse.description');
 	}
 
 	function getInstallSchemaFile() {
@@ -140,9 +140,9 @@ class DataversePlugin extends GenericPlugin {
   function getManagementVerbs() {
     $verbs = array();
     if ($this->getEnabled()) {
-      $verbs[] = array('connect', __('plugins.generic.dataverse.settings.connect'));
-      $verbs[] = array('select', __('plugins.generic.dataverse.settings.selectDataverse')); 
-      $verbs[] = array('settings', __('plugins.generic.dataverse.settings'));
+      $verbs[] = array('connect', PKPLocale::translate('plugins.generic.dataverse.settings.connect'));
+      $verbs[] = array('select', PKPLocale::translate('plugins.generic.dataverse.settings.selectDataverse'));
+      $verbs[] = array('settings', PKPLocale::translate('plugins.generic.dataverse.settings'));
     }
     return parent::getManagementVerbs($verbs);
   }
@@ -315,10 +315,10 @@ class DataversePlugin extends GenericPlugin {
     }
     if (!$dataCitation) return $output;
 
-    $index = strpos($output, '<td class="label">'. __('submission.submitter'));
+    $index = strpos($output, '<td class="label">'. PKPLocale::translate('submission.submitter'));
     if ($index !== false) {
       $newOutput = substr($output,0,$index);
-      $newOutput .= '<td class="label">'.  __('plugins.generic.dataverse.dataCitation') .'</td>';
+      $newOutput .= '<td class="label">'.  PKPLocale::translate('plugins.generic.dataverse.dataCitation') .'</td>';
       $newOutput .= '<td class="value" colspan="2">'. $dataCitation .'</td></tr><tr>';
       $newOutput .= substr($output, $index);
       $output =& $newOutput;
@@ -380,7 +380,7 @@ class DataversePlugin extends GenericPlugin {
       $output =& $args[2];
       $templateMgr =& TemplateManager::getManager();    
       $output .= '<li>&#187; <a href="'. $templateMgr->smartyUrl(array('page' => 'dataverse', 'op'=>'dataAvailabilityPolicy'), $smarty) .'">';
-      $output .= __('plugins.generic.dataverse.settings.dataAvailabilityPolicy');
+      $output .= PKPLocale::translate('plugins.generic.dataverse.settings.dataAvailabilityPolicy');
       $output .= '</a></li>';
     }
     return false;
@@ -1374,39 +1374,39 @@ class DataversePlugin extends GenericPlugin {
 
 		switch ($type) {
       case NOTIFICATION_TYPE_ERROR:
-        $message = __('plugins.generic.dataverse.notification.error');
+        $message = PKPLocale::translate('plugins.generic.dataverse.notification.error');
         break;
       
       case NOTIFICATION_TYPE_DATAVERSE_FILE_ADDED:
-        $message = __('plugins.generic.dataverse.notification.fileAdded');
+        $message = PKPLocale::translate('plugins.generic.dataverse.notification.fileAdded');
         break;
       
       case NOTIFICATION_TYPE_DATAVERSE_FILE_DELETED:
-        $message = __('plugins.generic.dataverse.notification.fileDeleted');
+        $message = PKPLocale::translate('plugins.generic.dataverse.notification.fileDeleted');
         break;
 
       case NOTIFICATION_TYPE_DATAVERSE_STUDY_CREATED:
-        $message = __('plugins.generic.dataverse.notification.studyCreated');
+        $message = PKPLocale::translate('plugins.generic.dataverse.notification.studyCreated');
         break;
       
       case NOTIFICATION_TYPE_DATAVERSE_STUDY_UPDATED:
-        $message = __('plugins.generic.dataverse.notification.studyUpdated');
+        $message = PKPLocale::translate('plugins.generic.dataverse.notification.studyUpdated');
         break;
       
       case NOTIFICATION_TYPE_DATAVERSE_STUDY_DELETED:
-        $message = __('plugins.generic.dataverse.notification.studyDeleted');
+        $message = PKPLocale::translate('plugins.generic.dataverse.notification.studyDeleted');
         break;
       
 			case NOTIFICATION_TYPE_DATAVERSE_STUDY_RELEASED:
 				$notificationSettingsDao =& DAORegistry::getDAO('NotificationSettingsDAO');
 				$params = $notificationSettingsDao->getNotificationSettings($notification->getId());
-				$message = __('plugins.generic.dataverse.notification.studyReleased', $notificationManager->getParamsForCurrentLocale($params));
+				$message = PKPLocale::translate('plugins.generic.dataverse.notification.studyReleased', $notificationManager->getParamsForCurrentLocale($params));
 				break;
       
 			case NOTIFICATION_TYPE_DATAVERSE_UNRELEASED:
 				$notificationSettingsDao =& DAORegistry::getDAO('NotificationSettingsDAO');
 				$params = $notificationSettingsDao->getNotificationSettings($notification->getId());
-				$message = __('plugins.generic.dataverse.notification.releaseDataverse', $notificationManager->getParamsForCurrentLocale($params));
+				$message = PKPLocale::translate('plugins.generic.dataverse.notification.releaseDataverse', $notificationManager->getParamsForCurrentLocale($params));
 				break;
 		}
 	}  

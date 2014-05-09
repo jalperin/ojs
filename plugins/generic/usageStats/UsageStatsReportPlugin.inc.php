@@ -40,14 +40,14 @@ class UsageStatsReportPlugin extends ReportPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.reports.usageStats.report.displayName');
+		return PKPLocale::translate('plugins.reports.usageStats.report.displayName');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.reports.usageStats.report.description');
+		return PKPLocale::translate('plugins.reports.usageStats.report.description');
 	}
 
 	/**
@@ -95,7 +95,7 @@ class UsageStatsReportPlugin extends ReportPlugin {
 	 */
 	function getMetricDisplayType($metricType) {
 		if ($metricType !== OJS_METRIC_TYPE_COUNTER) return null;
-		return __('plugins.reports.usageStats.metricType');
+		return PKPLocale::translate('plugins.reports.usageStats.metricType');
 	}
 
 	/**
@@ -103,7 +103,7 @@ class UsageStatsReportPlugin extends ReportPlugin {
 	 */
 	function getMetricFullName($metricType) {
 		if ($metricType !== OAS_METRIC_TYPE_COUNTER) return null;
-		return __('plugins.reports.usageStats.metricType.full');
+		return PKPLocale::translate('plugins.reports.usageStats.metricType.full');
 	}
 
 	/**

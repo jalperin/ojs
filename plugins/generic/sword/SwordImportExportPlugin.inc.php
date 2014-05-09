@@ -52,11 +52,11 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.importexport.sword.displayName');
+		return PKPLocale::translate('plugins.importexport.sword.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.importexport.sword.description');
+		return PKPLocale::translate('plugins.importexport.sword.description');
 	}
 
 	/**

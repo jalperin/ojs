@@ -76,11 +76,11 @@ class OpenAIREPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.openAIRE.displayName');
+		return PKPLocale::translate('plugins.generic.openAIRE.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.openAIRE.description');
+		return PKPLocale::translate('plugins.generic.openAIRE.description');
 	}
 
 	/*

@@ -125,7 +125,7 @@ class UsageStatsLoader extends FileLoader {
 		$fhandle = fopen($filePath, 'r');
 		$geoTool = $this->_geoLocationTool;
 		if (!$fhandle) {
-			$errorMsg = __('plugins.generic.usageStats.openFileFailed', array('file' => $filePath));
+			$errorMsg = PKPLocale::translate('plugins.generic.usageStats.openFileFailed', array('file' => $filePath));
 		}
 
 		$loadId = basename($filePath);
@@ -145,7 +145,7 @@ class UsageStatsLoader extends FileLoader {
 			if (empty($line) || substr($line, 0, 1) === "#") continue; // Spacing or comment lines.
 			$entryData = $this->_getDataFromLogEntry($line);
 			if (!$this->_isLogEntryValid($entryData, $lineNumber)) {
-				$errorMsg = __('plugins.generic.usageStats.invalidLogEntry',
+				$errorMsg = PKPLocale::translate('plugins.generic.usageStats.invalidLogEntry',
 					array('file' => $filePath, 'lineNumber' => $lineNumber));
 			}
 

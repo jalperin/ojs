@@ -48,11 +48,11 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.phpmv.displayName');
+		return PKPLocale::translate('plugins.generic.phpmv.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.phpmv.description');
+		return PKPLocale::translate('plugins.generic.phpmv.description');
 	}
 
 	/**
@@ -106,7 +106,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.phpmv.manager.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('plugins.generic.phpmv.manager.settings'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}

@@ -42,7 +42,7 @@ class BrowsePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.browse.displayName');
+		return PKPLocale::translate('plugins.generic.browse.displayName');
 	}
 
 	/**
@@ -50,7 +50,7 @@ class BrowsePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.generic.browse.description');
+		return PKPLocale::translate('plugins.generic.browse.description');
 	}
 
 	/**
@@ -142,7 +142,7 @@ class BrowsePlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.browse.manager.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('plugins.generic.browse.manager.settings'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}

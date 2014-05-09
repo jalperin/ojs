@@ -36,7 +36,7 @@ class PayPalPlugin extends PaymethodPlugin {
 	 * @return String
 	 */	
 	function getDisplayName() {
-		return __('plugins.paymethod.paypal.displayName');
+		return PKPLocale::translate('plugins.paymethod.paypal.displayName');
 	}
 
 	/**
@@ -44,7 +44,7 @@ class PayPalPlugin extends PaymethodPlugin {
 	 * @return String
 	 */
 	function getDescription() {
-		return __('plugins.paymethod.paypal.description');
+		return PKPLocale::translate('plugins.paymethod.paypal.description');
 	}   
 
 	/**

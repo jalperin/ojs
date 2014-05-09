@@ -46,14 +46,14 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 	 * @see ImportExportPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.importexport.pubIds.displayName');
+		return PKPLocale::translate('plugins.importexport.pubIds.displayName');
 	}
 
 	/**
 	 * @see ImportExportPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.importexport.pubIds.description');
+		return PKPLocale::translate('plugins.importexport.pubIds.description');
 	}
 
 	/**
@@ -371,8 +371,8 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 
 		if (!$journal) {
 			if ($journalPath != '') {
-				echo __('plugins.importexport.pubIds.cliError') . "\n";
-				echo __('plugins.importexport.pubIds.cliError.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
+				echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
+				echo PKPLocale::translate('plugins.importexport.pubIds.cliError.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -389,8 +389,8 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 
 				if (!$user) {
 					if ($userName != '') {
-						echo __('plugins.importexport.pubIds.cliError') . "\n";
-						echo __('plugins.importexport.pubIds.cliError.unknownUser', array('userName' => $userName)) . "\n\n";
+						echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
+						echo PKPLocale::translate('plugins.importexport.pubIds.cliError.unknownUser', array('userName' => $userName)) . "\n\n";
 					}
 					$this->usage($scriptName);
 					return;
@@ -404,15 +404,15 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 				);
 
 				$this->handleImport($context, $doc, $errors, $pubIds, true);
-				if (!empty($pubIds)) echo __('plugins.importexport.pubIds.import.success.description') . "\n";
+				if (!empty($pubIds)) echo PKPLocale::translate('plugins.importexport.pubIds.import.success.description') . "\n";
 					foreach ($pubIds as $pubId) {
 						echo "\t" . $pubId['value'] . "\n";
 					}
 
-				if (!empty($errors)) echo __('plugins.importexport.pubIds.cliError') . "\n";
+				if (!empty($errors)) echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
 				$errorsTranslated = array();
 				foreach ($errors as $error) {
-					$errorsTranslated[] = __($error[0], $error[1]);
+					$errorsTranslated[] = PKPLocale::translate($error[0], $error[1]);
 				}
 				foreach ($errorsTranslated as $errorTranslated) {
 					echo "\t" . $errorTranslated . "\n";
@@ -425,14 +425,14 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 						$issueId = array_shift($args);
 						$issue =& $issueDao->getIssueByBestIssueId($issueId, $journal->getId());
 						if ($issue == null) {
-							echo __('plugins.importexport.pubIds.cliError') . "\n";
-							echo __('plugins.importexport.pubIds.cliError.issueNotFound', array('issueId' => $issueId)) . "\n\n";
+							echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
+							echo PKPLocale::translate('plugins.importexport.pubIds.cliError.issueNotFound', array('issueId' => $issueId)) . "\n\n";
 							return;
 						}
 						$issues = array(&$issue);
 						if (!$this->exportPubIdsForIssues($journal, $issues, $xmlFile)) {
-							echo __('plugins.importexport.pubIds.cliError') . "\n";
-							echo __('plugins.importexport.pubIds.cliError.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+							echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
+							echo PKPLocale::translate('plugins.importexport.pubIds.cliError.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 						}
 						return;
 					case 'issues':
@@ -440,15 +440,15 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 						while (($issueId = array_shift($args))!==null) {
 							$issue =& $issueDao->getIssueByBestIssueId($issueId, $journal->getId());
 							if ($issue == null) {
-								echo __('plugins.importexport.pubIds.cliError') . "\n";
-								echo __('plugins.importexport.pubIds.cliError.issueNotFound', array('issueId' => $issueId)) . "\n\n";
+								echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
+								echo PKPLocale::translate('plugins.importexport.pubIds.cliError.issueNotFound', array('issueId' => $issueId)) . "\n\n";
 								return;
 							}
 							$issues[] =& $issue;
 						}
 						if (!$this->exportPubIdsForIssues($journal, array(&$issue), $xmlFile)) {
-							echo __('plugins.importexport.pubIds.cliError') . "\n";
-							echo __('plugins.importexport.pubIds.cliError.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+							echo PKPLocale::translate('plugins.importexport.pubIds.cliError') . "\n";
+							echo PKPLocale::translate('plugins.importexport.pubIds.cliError.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 						}
 						return;
 				}
@@ -461,7 +461,7 @@ class PubIdImportExportPlugin extends ImportExportPlugin {
 	 * @see ImportExportPlugin::usage()
 	 */
 	function usage($scriptName) {
-		echo __('plugins.importexport.pubIds.cliUsage', array(
+		echo PKPLocale::translate('plugins.importexport.pubIds.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

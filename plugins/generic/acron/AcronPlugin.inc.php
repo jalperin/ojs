@@ -60,14 +60,14 @@ class AcronPlugin extends GenericPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.acron.name');
+		return PKPLocale::translate('plugins.generic.acron.name');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.generic.acron.description');
+		return PKPLocale::translate('plugins.generic.acron.description');
 	}
 
 	/**
@@ -86,10 +86,10 @@ class AcronPlugin extends GenericPlugin {
 		$verbs = array();
 		$verbs[] = array(
 		($isEnabled?'disable':'enable'),
-		__($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
+		PKPLocale::translate($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
 		);
 		$verbs[] = array(
-				'reload', __('plugins.generic.acron.reload')
+				'reload', PKPLocale::translate('plugins.generic.acron.reload')
 		);
 		return $verbs;
 	}
@@ -101,11 +101,11 @@ class AcronPlugin extends GenericPlugin {
 		switch ($verb) {
 			case 'enable':
 				$this->updateSetting(0, 'enabled', true);
-				$message = __('plugins.generic.acron.enabled');
+				$message = PKPLocale::translate('plugins.generic.acron.enabled');
 				break;
 			case 'disable':
 				$this->updateSetting(0, 'enabled', false);
-				$message = __('plugins.generic.acron.disabled');
+				$message = PKPLocale::translate('plugins.generic.acron.disabled');
 				break;
 			case 'reload':
 				$this->_parseCrontab();

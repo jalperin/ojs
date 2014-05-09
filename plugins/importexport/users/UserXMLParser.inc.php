@@ -79,7 +79,7 @@ class UserXMLParser {
 								if (isset($encrypted) && $encrypted !== 'plaintext') {
 									$ojsEncryptionScheme = Config::getVar('security', 'encryption');
 									if ($encrypted != $ojsEncryptionScheme) {
-										$this->errors[] = __('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ojsHash' => $ojsEncryptionScheme));
+										$this->errors[] = PKPLocale::translate('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ojsHash' => $ojsEncryptionScheme));
 									}
 									$newUser->setPassword($attrib->getValue());
 								} else {
@@ -235,7 +235,7 @@ class UserXMLParser {
 				if (!$userDao->insertUser($user)) {
 					// Failed to add user!
 					$this->errors[] = sprintf('%s: %s (%s)',
-						__('manager.people.importUsers.failedToImportUser'),
+						PKPLocale::translate('manager.people.importUsers.failedToImportUser'),
 						$user->getFullName(), $user->getUsername());
 
 					if ($continueOnError) {
@@ -266,7 +266,7 @@ class UserXMLParser {
 					if (!$roleDao->insertRole($role)) {
 						// Failed to add role!
 						$this->errors[] = sprintf('%s: %s - %s (%s)',
-							__('manager.people.importUsers.failedToImportRole'),
+							PKPLocale::translate('manager.people.importUsers.failedToImportRole'),
 							$role->getRoleName(),
 							$user->getFullName(), $user->getUsername());
 

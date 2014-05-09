@@ -42,14 +42,14 @@ class CounterReportPlugin extends ReportPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.reports.counter');
+		return PKPLocale::translate('plugins.reports.counter');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.reports.counter.description');
+		return PKPLocale::translate('plugins.reports.counter.description');
 	}
 
 	/**
@@ -132,18 +132,18 @@ class CounterReportPlugin extends ReportPlugin {
 		header('content-disposition: attachment; filename=counter-' . date('Ymd') . '.csv');
 
 		$fp = fopen('php://output', 'wt');
-		String::fputcsv($fp, array(__('plugins.reports.counter.1a.title1')));
-		String::fputcsv($fp, array(__('plugins.reports.counter.1a.title2', array('year' => $year))));
+		String::fputcsv($fp, array(PKPLocale::translate('plugins.reports.counter.1a.title1')));
+		String::fputcsv($fp, array(PKPLocale::translate('plugins.reports.counter.1a.title2', array('year' => $year))));
 		String::fputcsv($fp, array()); // FIXME: Criteria should be here?
-		String::fputcsv($fp, array(__('plugins.reports.counter.1a.dateRun')));
+		String::fputcsv($fp, array(PKPLocale::translate('plugins.reports.counter.1a.dateRun')));
 		String::fputcsv($fp, array(strftime("%Y-%m-%d")));
 
 		$cols = array(
 				'',
-		__('plugins.reports.counter.1a.publisher'),
-		__('plugins.reports.counter.1a.platform'),
-		__('plugins.reports.counter.1a.printIssn'),
-		__('plugins.reports.counter.1a.onlineIssn')
+		PKPLocale::translate('plugins.reports.counter.1a.publisher'),
+		PKPLocale::translate('plugins.reports.counter.1a.platform'),
+		PKPLocale::translate('plugins.reports.counter.1a.printIssn'),
+		PKPLocale::translate('plugins.reports.counter.1a.onlineIssn')
 		);
 		for ($i=1; $i<=12; $i++) {
 			$time = strtotime($year . '-' . $i . '-01');
@@ -151,15 +151,15 @@ class CounterReportPlugin extends ReportPlugin {
 			$cols[] = strftime('%b-%Y', $time);
 		}
 
-		$cols[] = __('plugins.reports.counter.1a.ytdTotal');
-		$cols[] = __('plugins.reports.counter.1a.ytdHtml');
-		$cols[] = __('plugins.reports.counter.1a.ytdPdf');
+		$cols[] = PKPLocale::translate('plugins.reports.counter.1a.ytdTotal');
+		$cols[] = PKPLocale::translate('plugins.reports.counter.1a.ytdHtml');
+		$cols[] = PKPLocale::translate('plugins.reports.counter.1a.ytdPdf');
 		fputcsv($fp, $cols);
 
 		// Display the totals first
 		$totals = $this->_getMonthlyTotalRange($begin, $end, $useLegacyStats);
 		$cols = array(
-		__('plugins.reports.counter.1a.totalForAllJournals'),
+		PKPLocale::translate('plugins.reports.counter.1a.totalForAllJournals'),
 				'-', // Publisher
 				'', // Platform
 				'-',

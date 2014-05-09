@@ -149,12 +149,12 @@ class TimedViewReportForm extends Form {
 		header('content-disposition: attachment; filename=report.csv');
 		$fp = fopen('php://output', 'wt');
 		$reportColumns = array(
-			__('plugins.reports.timedView.report.articleId'),
-			__('plugins.reports.timedView.report.articleTitle'),
-			__('issue.issue'),
-			__('plugins.reports.timedView.report.datePublished'),
-			__('plugins.reports.timedView.report.abstractViews'),
-			__('plugins.reports.timedView.report.galleyViews'),
+			PKPLocale::translate('plugins.reports.timedView.report.articleId'),
+			PKPLocale::translate('plugins.reports.timedView.report.articleTitle'),
+			PKPLocale::translate('issue.issue'),
+			PKPLocale::translate('plugins.reports.timedView.report.datePublished'),
+			PKPLocale::translate('plugins.reports.timedView.report.abstractViews'),
+			PKPLocale::translate('plugins.reports.timedView.report.galleyViews'),
 		);
 
 		fputcsv($fp, array_merge($reportColumns, $galleyLabels));

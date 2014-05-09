@@ -227,7 +227,7 @@ class StatisticsHandler extends ManagerHandler {
 			}
 
 			if ($column == STATISTICS_DIMENSION_ASSOC_TYPE && in_array(STATISTICS_DIMENSION_ASSOC_ID, $columns)) {
-				$columnNames['common.title'] = __('common.title');
+				$columnNames['common.title'] = PKPLocale::translate('common.title');
 			}
 		}
 
@@ -239,8 +239,8 @@ class StatisticsHandler extends ManagerHandler {
 		$fp = fopen('php://output', 'wt');
 		fputcsv($fp, array($reportPlugin->getDisplayName()));
 		fputcsv($fp, array($reportPlugin->getDescription()));
-		fputcsv($fp, array(__('common.metric') . ': ' . $metricType));
-		fputcsv($fp, array(__('manager.statistics.reports.reportUrl') . ': ' . $request->getCompleteUrl()));
+		fputcsv($fp, array(PKPLocale::translate('common.metric') . ': ' . $metricType));
+		fputcsv($fp, array(PKPLocale::translate('manager.statistics.reports.reportUrl') . ': ' . $request->getCompleteUrl()));
 		fputcsv($fp, array(''));
 
 		// Just for better displaying.

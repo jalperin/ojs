@@ -186,7 +186,7 @@ class ReviewObjectTypesEditorHandler extends Handler {
 
 		$languageDao =& DAORegistry::getDAO('LanguageDAO');
 		$languages =& $languageDao->getLanguages();
-		$validLanguages = array('' => __('plugins.generic.objectsForReview.editor.objectForReview.chooseLanguage'));
+		$validLanguages = array('' => PKPLocale::translate('plugins.generic.objectsForReview.editor.objectForReview.chooseLanguage'));
 		while (list(, $language) = each($languages)) {
 			$validLanguages[$language->getCode()] = $language->getName();
 		}
@@ -697,7 +697,7 @@ class ReviewObjectTypesEditorHandler extends Handler {
 					if (!$data) return false;
 
 					// Set the review object name
-					$itemTypeName = __($data->getChildValue('objectType'), array(), $locale);
+					$itemTypeName = PKPLocale::translate($data->getChildValue('objectType'), array(), $locale);
 					$reviewObjectType->setName($itemTypeName, $locale);
 					// $reviewObjectType->setDescription($itemTypeNameDescription, $locale);
 
@@ -740,7 +740,7 @@ class ReviewObjectTypesEditorHandler extends Handler {
 						}
 					}
 					// Set metadata name
-					$name = __($metadataNode->getChildValue('name'), array(), $locale);
+					$name = PKPLocale::translate($metadataNode->getChildValue('name'), array(), $locale);
 					$reviewObjectMetadata->setName($name, $locale);
 					// Set roles options
 					if ($key == REVIEW_OBJECT_METADATA_KEY_ROLE) {
@@ -748,7 +748,7 @@ class ReviewObjectTypesEditorHandler extends Handler {
 							$possibleOptions = array();
 							$index = 1;
 							foreach ($roleSelectionOptions->getChildren() as $selectionOptionNode) {
-								$possibleOptions[] = array('order' => $index, 'content' => __($selectionOptionNode->getValue(), array(), $locale));
+								$possibleOptions[] = array('order' => $index, 'content' => PKPLocale::translate($selectionOptionNode->getValue(), array(), $locale));
 								$index++;
 							}
 							$reviewObjectMetadata->setPossibleOptions($possibleOptions, $locale);
@@ -760,7 +760,7 @@ class ReviewObjectTypesEditorHandler extends Handler {
 							$possibleOptions = array();
 							$index = 1;
 							foreach ($selectionOptions->getChildren() as $selectionOptionNode) {
-								$possibleOptions[] = array('order' => $index, 'content' => __($selectionOptionNode->getValue(), array(), $locale));
+								$possibleOptions[] = array('order' => $index, 'content' => PKPLocale::translate($selectionOptionNode->getValue(), array(), $locale));
 								$index++;
 							}
 							$reviewObjectMetadata->setPossibleOptions($possibleOptions, $locale);

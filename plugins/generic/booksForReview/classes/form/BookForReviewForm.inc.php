@@ -53,16 +53,16 @@ class BookForReviewForm extends Form {
 		}
 
 		$this->validStatus = array (
-			BFR_STATUS_AVAILABLE => __('plugins.generic.booksForReview.status.available'),
-			BFR_STATUS_REQUESTED => __('plugins.generic.booksForReview.status.requested'),
-			BFR_STATUS_ASSIGNED => __('plugins.generic.booksForReview.status.assigned'),
-			BFR_STATUS_MAILED => __('plugins.generic.booksForReview.status.mailed'),
-			BFR_STATUS_SUBMITTED => __('plugins.generic.booksForReview.status.submitted')
+			BFR_STATUS_AVAILABLE => PKPLocale::translate('plugins.generic.booksForReview.status.available'),
+			BFR_STATUS_REQUESTED => PKPLocale::translate('plugins.generic.booksForReview.status.requested'),
+			BFR_STATUS_ASSIGNED => PKPLocale::translate('plugins.generic.booksForReview.status.assigned'),
+			BFR_STATUS_MAILED => PKPLocale::translate('plugins.generic.booksForReview.status.mailed'),
+			BFR_STATUS_SUBMITTED => PKPLocale::translate('plugins.generic.booksForReview.status.submitted')
 		);
 
 		$this->validAuthorTypes = array (
-			BFR_AUTHOR_TYPE_BY => __('plugins.generic.booksForReview.authorType.by'),
-			BFR_AUTHOR_TYPE_EDITED_BY => __('plugins.generic.booksForReview.authorType.editedBy')
+			BFR_AUTHOR_TYPE_BY => PKPLocale::translate('plugins.generic.booksForReview.authorType.by'),
+			BFR_AUTHOR_TYPE_EDITED_BY => PKPLocale::translate('plugins.generic.booksForReview.authorType.editedBy')
 		);
 
 		$languageDao =& DAORegistry::getDAO('LanguageDAO');
@@ -253,7 +253,7 @@ class BookForReviewForm extends Form {
 			$extension = $publicFileManager->getImageExtension($type);
 			if (!$extension) {
 				// Not a valid image.
-				$this->addError('imageFile', __('submission.layout.imageInvalid'));
+				$this->addError('imageFile', PKPLocale::translate('submission.layout.imageInvalid'));
 				return false;
 			}
 		}

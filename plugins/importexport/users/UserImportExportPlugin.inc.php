@@ -40,11 +40,11 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.importexport.users.displayName');
+		return PKPLocale::translate('plugins.importexport.users.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.importexport.users.description');
+		return PKPLocale::translate('plugins.importexport.users.description');
 	}
 
 	function display(&$args, $request) {
@@ -221,8 +221,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 		if (!$journal) {
 			if ($journalPath != '') {
-				echo __('plugins.importexport.users.import.errorsOccurred') . ":\n";
-				echo __('plugins.importexport.users.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
+				echo PKPLocale::translate('plugins.importexport.users.import.errorsOccurred') . ":\n";
+				echo PKPLocale::translate('plugins.importexport.users.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -242,7 +242,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
 					// Failure.
-					echo __('plugins.importexport.users.import.errorsOccurred') . ":\n";
+					echo PKPLocale::translate('plugins.importexport.users.import.errorsOccurred') . ":\n";
 					foreach ($parser->getErrors() as $error) {
 						echo "\t$error\n";
 					}
@@ -250,7 +250,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				}
 
 				// Success.
-				echo __('plugins.importexport.users.import.usersWereImported') . ":\n";
+				echo PKPLocale::translate('plugins.importexport.users.import.usersWereImported') . ":\n";
 				foreach ($parser->getImportedUsers() as $user) {
 					echo "\t" . $user->getUserName() . "\n";
 				}
@@ -280,8 +280,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$userExportDom = new UserExportDom();
 				$doc =& $userExportDom->exportUsers($journal, $users, $rolePaths);
 				if (($h = fopen($xmlFile, 'wb'))===false) {
-					echo __('plugins.importexport.users.export.errorsOccurred') . ":\n";
-					echo __('plugins.importexport.users.export.couldNotWriteFile', array('fileName' => $xmlFile)) . "\n";
+					echo PKPLocale::translate('plugins.importexport.users.export.errorsOccurred') . ":\n";
+					echo PKPLocale::translate('plugins.importexport.users.export.couldNotWriteFile', array('fileName' => $xmlFile)) . "\n";
 					return false;
 				}
 				fwrite($h, XMLCustomWriter::getXML($doc));
@@ -295,7 +295,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo __('plugins.importexport.users.cliUsage', array(
+		echo PKPLocale::translate('plugins.importexport.users.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

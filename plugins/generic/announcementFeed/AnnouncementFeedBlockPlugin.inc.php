@@ -42,14 +42,14 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 	 * @return String
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.announcementfeed.displayName');
+		return PKPLocale::translate('plugins.generic.announcementfeed.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return __('plugins.generic.announcementfeed.description');
+		return PKPLocale::translate('plugins.generic.announcementfeed.description');
 	}
 
 	/**

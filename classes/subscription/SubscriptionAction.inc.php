@@ -309,7 +309,7 @@ class SubscriptionAction {
 		$templateMgr->assign('subscriptionId', Request::getUserVar('subscriptionId'));
 		$templateMgr->assign('pageTitle', $pageTitle);
 		$templateMgr->assign('redirect', $redirect);
-		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 		$templateMgr->display('subscription/users.tpl');
 	}
 

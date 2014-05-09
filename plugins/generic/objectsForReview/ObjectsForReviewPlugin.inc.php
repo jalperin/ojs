@@ -102,14 +102,14 @@ class ObjectsForReviewPlugin extends GenericPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.objectsForReview.displayName');
+		return PKPLocale::translate('plugins.generic.objectsForReview.displayName');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.generic.objectsForReview.description');
+		return PKPLocale::translate('plugins.generic.objectsForReview.description');
 	}
 
 	/**
@@ -290,52 +290,52 @@ class ObjectsForReviewPlugin extends GenericPlugin {
 		assert(isset($type));
 		switch ($type) {
 			case NOTIFICATION_TYPE_OFR_OT_INSTALLED:
-				$message = __('plugins.generic.objectsForReview.notification.objectTypeInstalled');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.objectTypeInstalled');
 				break;
 			case NOTIFICATION_TYPE_OFR_OT_CREATED:
-				$message = __('plugins.generic.objectsForReview.notification.objectTypeCreated');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.objectTypeCreated');
 				break;
 			case NOTIFICATION_TYPE_OFR_OT_UPDATED:
-				$message = __('plugins.generic.objectsForReview.notification.objectTypeUpdated');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.objectTypeUpdated');
 				break;
 			case NOTIFICATION_TYPE_OFR_OT_ACTIVATED:
-				$message = __('plugins.generic.objectsForReview.notification.objectTypeActivated');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.objectTypeActivated');
 				break;
 			case NOTIFICATION_TYPE_OFR_OT_DEACTIVATED:
-				$message = __('plugins.generic.objectsForReview.notification.objectTypeDeactivated');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.objectTypeDeactivated');
 				break;
 			case NOTIFICATION_TYPE_OFR_OT_DELETED:
-				$message = __('plugins.generic.objectsForReview.notification.objectTypeDeleted');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.objectTypeDeleted');
 				break;
 			case NOTIFICATION_TYPE_OFR_CREATED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrCreated');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrCreated');
 				break;
 			case NOTIFICATION_TYPE_OFR_UPDATED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrUpdated');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrUpdated');
 				break;
 			case NOTIFICATION_TYPE_OFR_DELETED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrDeleted');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrDeleted');
 				break;
 			case NOTIFICATION_TYPE_OFR_REQUESTED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrRequested');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrRequested');
 				break;
 			case NOTIFICATION_TYPE_OFR_AUTHOR_ASSIGNED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrAauthorAssigned');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrAauthorAssigned');
 				break;
 			case NOTIFICATION_TYPE_OFR_AUTHOR_DENIED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrAuthorDenied');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrAuthorDenied');
 				break;
 			case NOTIFICATION_TYPE_OFR_AUTHOR_MAILED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrAuthorMailed');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrAuthorMailed');
 				break;
 			case NOTIFICATION_TYPE_OFR_AUTHOR_REMOVED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrAuthorRemoved');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrAuthorRemoved');
 				break;
 			case NOTIFICATION_TYPE_OFR_SUBMISSION_ASSIGNED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrSubmissionAssigned');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrSubmissionAssigned');
 				break;
 			case NOTIFICATION_TYPE_OFR_SETTINGS_SAVED:
-				$message = __('plugins.generic.objectsForReview.notification.ofrSettingsSaved');
+				$message = PKPLocale::translate('plugins.generic.objectsForReview.notification.ofrSettingsSaved');
 				break;
 		}
 	}
@@ -377,15 +377,15 @@ class ObjectsForReviewPlugin extends GenericPlugin {
 			$output =& $params[2];
 			$templateMgr = TemplateManager::getManager();
 			if ($hookName == 'Templates::Editor::Index::AdditionalItems') { // On editor's home page
-				$output .= '<h3>' . __('plugins.generic.objectsForReview.editor.objectsForReview') . '</h3>
+				$output .= '<h3>' . PKPLocale::translate('plugins.generic.objectsForReview.editor.objectsForReview') . '</h3>
 							<ul class="plain">
-							<li>&#187; <a href="' . Request::url(null, 'editor', 'reviewObjectTypes') . '">' . __('plugins.generic.objectsForReview.editor.objectTypes') . '</a></li>
-							<li>&#187; <a href="' . Request::url(null, 'editor', 'objectsForReview', 'all') . '">' . __('plugins.generic.objectsForReview.editor.objectsForReview') . '</a></li>
+							<li>&#187; <a href="' . Request::url(null, 'editor', 'reviewObjectTypes') . '">' . PKPLocale::translate('plugins.generic.objectsForReview.editor.objectTypes') . '</a></li>
+							<li>&#187; <a href="' . Request::url(null, 'editor', 'objectsForReview', 'all') . '">' . PKPLocale::translate('plugins.generic.objectsForReview.editor.objectsForReview') . '</a></li>
 							</ul>';
 			} elseif ($hookName == 'Templates::Author::Index::AdditionalItems') { // On author's home page
-				$output .= '<br /><div class="separator"></div><h3>' . __('plugins.generic.objectsForReview.author.objectsForReview') . '</h3><ul class="plain"><li>&#187; <a href="' . Request::url(null, 'author', 'objectsForReview', 'all') . '">' . __('plugins.generic.objectsForReview.author.myObjectsForReview') . '</a></li></ul><br />';
+				$output .= '<br /><div class="separator"></div><h3>' . PKPLocale::translate('plugins.generic.objectsForReview.author.objectsForReview') . '</h3><ul class="plain"><li>&#187; <a href="' . Request::url(null, 'author', 'objectsForReview', 'all') . '">' . PKPLocale::translate('plugins.generic.objectsForReview.author.myObjectsForReview') . '</a></li></ul><br />';
 			} elseif ($hookName == 'Templates::Common::Header::Navbar::CurrentJournal') { // In the main nav bar
-				$output .= '<li><a href="' . Request::url(null, 'objectsForReview') . '" target="_parent">' . __('plugins.generic.objectsForReview.public.headerLink') . '</a></li>';
+				$output .= '<li><a href="' . Request::url(null, 'objectsForReview') . '" target="_parent">' . PKPLocale::translate('plugins.generic.objectsForReview.public.headerLink') . '</a></li>';
 			}
 		}
 		return false;

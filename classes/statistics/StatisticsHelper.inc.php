@@ -195,19 +195,19 @@ class StatisticsHelper {
 	*/
 	function getColumnNames($column = null) {
 		$columns = array(
-			STATISTICS_DIMENSION_ASSOC_ID => __('common.id'),
-			STATISTICS_DIMENSION_ASSOC_TYPE => __('common.type'),
-			STATISTICS_DIMENSION_SUBMISSION_ID => __('article.article'),
-			STATISTICS_DIMENSION_ISSUE_ID => __('issue.issue'),
-			STATISTICS_DIMENSION_CONTEXT_ID => __('common.journal'),
-			STATISTICS_DIMENSION_CITY => __('manager.statistics.city'),
-			STATISTICS_DIMENSION_REGION => __('manager.statistics.region'),
-			STATISTICS_DIMENSION_COUNTRY => __('common.country'),
-			STATISTICS_DIMENSION_DAY => __('common.day'),
-			STATISTICS_DIMENSION_MONTH => __('common.month'),
-			STATISTICS_DIMENSION_FILE_TYPE => __('common.fileType'),
-			STATISTICS_DIMENSION_METRIC_TYPE => __('common.metric'),
-			STATISTICS_METRIC => __('common.count')
+			STATISTICS_DIMENSION_ASSOC_ID => PKPLocale::translate('common.id'),
+			STATISTICS_DIMENSION_ASSOC_TYPE => PKPLocale::translate('common.type'),
+			STATISTICS_DIMENSION_SUBMISSION_ID => PKPLocale::translate('article.article'),
+			STATISTICS_DIMENSION_ISSUE_ID => PKPLocale::translate('issue.issue'),
+			STATISTICS_DIMENSION_CONTEXT_ID => PKPLocale::translate('common.journal'),
+			STATISTICS_DIMENSION_CITY => PKPLocale::translate('manager.statistics.city'),
+			STATISTICS_DIMENSION_REGION => PKPLocale::translate('manager.statistics.region'),
+			STATISTICS_DIMENSION_COUNTRY => PKPLocale::translate('common.country'),
+			STATISTICS_DIMENSION_DAY => PKPLocale::translate('common.day'),
+			STATISTICS_DIMENSION_MONTH => PKPLocale::translate('common.month'),
+			STATISTICS_DIMENSION_FILE_TYPE => PKPLocale::translate('common.fileType'),
+			STATISTICS_DIMENSION_METRIC_TYPE => PKPLocale::translate('common.metric'),
+			STATISTICS_METRIC => PKPLocale::translate('common.count')
 		);
 
 		if ($column) {
@@ -228,11 +228,11 @@ class StatisticsHelper {
 	*/
 	function getObjectTypeString($assocType = null) {
 		$objectTypeStrings = array(
-			ASSOC_TYPE_JOURNAL => __('journal.journal'),
-			ASSOC_TYPE_ISSUE => __('issue.issue'),
-			ASSOC_TYPE_ISSUE_GALLEY => __('editor.issues.galley'),
-			ASSOC_TYPE_ARTICLE => __('article.article'),
-			ASSOC_TYPE_GALLEY => __('submission.galley')
+			ASSOC_TYPE_JOURNAL => PKPLocale::translate('journal.journal'),
+			ASSOC_TYPE_ISSUE => PKPLocale::translate('issue.issue'),
+			ASSOC_TYPE_ISSUE_GALLEY => PKPLocale::translate('editor.issues.galley'),
+			ASSOC_TYPE_ARTICLE => PKPLocale::translate('article.article'),
+			ASSOC_TYPE_GALLEY => PKPLocale::translate('submission.galley')
 		);
 
 		if (is_null($assocType)) {
@@ -255,7 +255,7 @@ class StatisticsHelper {
 		$fileTypeStrings = array(
 			STATISTICS_FILE_TYPE_PDF => 'PDF',
 			STATISTICS_FILE_TYPE_HTML => 'HTML',
-			STATISTICS_FILE_TYPE_OTHER => __('common.other')
+			STATISTICS_FILE_TYPE_OTHER => PKPLocale::translate('common.other')
 		);
 
 		if (is_null($fileType)) {

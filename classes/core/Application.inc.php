@@ -382,7 +382,7 @@ class Application extends PKPApplication {
 			'http://creativecommons.org/licenses/by-sa/4.0' => 'submission.license.cc.by-sa4.footer'
 		);
 		if (isset($licenseKeyMap[$ccLicenseURL])) {
-			return __($licenseKeyMap[$ccLicenseURL]);
+			return PKPLocale::translate($licenseKeyMap[$ccLicenseURL]);
 		}
 		return null;
 	}

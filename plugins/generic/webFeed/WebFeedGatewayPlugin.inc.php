@@ -42,11 +42,11 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.webfeed.displayName');
+		return PKPLocale::translate('plugins.generic.webfeed.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.webfeed.description');
+		return PKPLocale::translate('plugins.generic.webfeed.description');
 	}
 
 	/**

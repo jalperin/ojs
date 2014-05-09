@@ -38,7 +38,7 @@ class rebuildSearchIndex extends CommandLineTool {
 			$journalDao =& DAORegistry::getDAO('JournalDAO');
 			$journal =& $journalDao->getJournalByPath($journalPath);
 			if (!$journal) {
-				die (__('search.cli.rebuildIndex.unknownJournal', array('journalPath' => $journalPath)). "\n");
+				die (PKPLocale::translate('search.cli.rebuildIndex.unknownJournal', array('journalPath' => $journalPath)). "\n");
 			}
 		}
 

@@ -43,11 +43,11 @@ class TranslatorPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.translator.name');
+		return PKPLocale::translate('plugins.generic.translator.name');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.translator.description');
+		return PKPLocale::translate('plugins.generic.translator.description');
 	}
 
 	function isSitePlugin() {
@@ -57,7 +57,7 @@ class TranslatorPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('translate', __('plugins.generic.translator.translate'));
+			$verbs[] = array('translate', PKPLocale::translate('plugins.generic.translator.translate'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}

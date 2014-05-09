@@ -43,7 +43,7 @@ class ObjectsForReviewHandler extends Handler {
 		// Filter by review object type
 		$reviewObjectTypeDao =& DAORegistry::getDAO('ReviewObjectTypeDAO');
 		$allTypes =& $reviewObjectTypeDao->getTypeIdsAlphabetizedByContext($journalId);
-		$typeOptions = array(0 => __('common.all'));
+		$typeOptions = array(0 => PKPLocale::translate('common.all'));
 		$reviewObjectMetadataDao =& DAORegistry::getDAO('ReviewObjectMetadataDAO');
 		$allReviewObjectsMetadata = array();
 		foreach ($allTypes as $type) {
@@ -56,14 +56,14 @@ class ObjectsForReviewHandler extends Handler {
 
 		// Sort
 		$sortingOptions = array(
-			'title' => __('plugins.generic.objectsForReview.objectsForReview.title'),
-			'created' => __('plugins.generic.objectsForReview.objectsForReview.dateCreated')
+			'title' => PKPLocale::translate('plugins.generic.objectsForReview.objectsForReview.title'),
+			'created' => PKPLocale::translate('plugins.generic.objectsForReview.objectsForReview.dateCreated')
 		);
 		$sort = $request->getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'title';
 		$sortDirections = array(
-			SORT_DIRECTION_ASC => __('plugins.generic.objectsForReview.sort.sortDirectionAsc'),
-			SORT_DIRECTION_DESC => __('plugins.generic.objectsForReview.sort.sortDirectionDesc')
+			SORT_DIRECTION_ASC => PKPLocale::translate('plugins.generic.objectsForReview.sort.sortDirectionAsc'),
+			SORT_DIRECTION_DESC => PKPLocale::translate('plugins.generic.objectsForReview.sort.sortDirectionDesc')
 		);
 		$sortDirection = $request->getUserVar('sortDirection');
 		$sortDirection = isset($sortDirection) ? $sortDirection : SORT_DIRECTION_ASC;

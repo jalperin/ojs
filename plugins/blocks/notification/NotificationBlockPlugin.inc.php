@@ -46,14 +46,14 @@ class NotificationBlockPlugin extends BlockPlugin {
 	 * @return String
 	 */
 	function getDisplayName() {
-		return __('plugins.block.notification.displayName');
+		return PKPLocale::translate('plugins.block.notification.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return __('plugins.block.notification.description');
+		return PKPLocale::translate('plugins.block.notification.description');
 	}
 
 

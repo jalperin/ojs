@@ -152,7 +152,7 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 
 		$response .=
 			"\t\t\t<permissions>\n" .
-			"\t\t\t\t<copyright-statement>" . htmlspecialchars(__('submission.copyrightStatement', array('copyrightYear' => $article->getCopyrightYear(), 'copyrightHolder' => $article->getLocalizedCopyrightHolder()))) . "</copyright-statement>\n" .
+			"\t\t\t\t<copyright-statement>" . htmlspecialchars(PKPLocale::translate('submission.copyrightStatement', array('copyrightYear' => $article->getCopyrightYear(), 'copyrightHolder' => $article->getLocalizedCopyrightHolder()))) . "</copyright-statement>\n" .
 			($datePublished?"\t\t\t\t<copyright-year>" . $article->getCopyrightYear() . "</copyright-year>\n":'') .
 			"\t\t\t\t<license xlink:href=\"" . $article->getLicenseURL() . "\">\n" .
 			(($s = Application::getCCLicenseBadge($article->getLicenseURL()))?"\t\t\t\t\t<license-p>" . strip_tags($s) . "</license-p>\n":'') .

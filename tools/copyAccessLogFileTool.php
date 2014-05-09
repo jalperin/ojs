@@ -87,7 +87,7 @@ class CopyAccessLogFileTool extends CommandLineTool {
 	 * Print command usage information.
 	 */
 	function usage() {
-		echo "\n" . __('admin.copyAccessLogFileTool.usage', array('scriptName' => $this->scriptName)) . "\n\n";
+		echo "\n" . PKPLocale::translate('admin.copyAccessLogFileTool.usage', array('scriptName' => $this->scriptName)) . "\n\n";
 	}
 
 	/**
@@ -107,7 +107,7 @@ class CopyAccessLogFileTool extends CommandLineTool {
 		}
 
 		if (!$fileMgr->mkdir($tmpDir)) {
-			printf(__('admin.copyAccessLogFileTool.error.creatingFolder', array('tmpDir' => $tmpDir)) . "\n");
+			printf(PKPLocale::translate('admin.copyAccessLogFileTool.error.creatingFolder', array('tmpDir' => $tmpDir)) . "\n");
 			exit(1);
 		}
 
@@ -131,7 +131,7 @@ class CopyAccessLogFileTool extends CommandLineTool {
 				$this->_copyFile($filePath);
 			} else {
 				// Can't access.
-				printf(__('admin.copyAccessLogFileTool.error.acessingFile', array('filePath' => $filePath)) . "\n");
+				printf(PKPLocale::translate('admin.copyAccessLogFileTool.error.acessingFile', array('filePath' => $filePath)) . "\n");
 			}
 		}
 
@@ -162,7 +162,7 @@ class CopyAccessLogFileTool extends CommandLineTool {
 		}
 
 		if (in_array($uncompressedFileName, $usageStatsFiles)) {
-			printf(__('admin.copyAccessLogFileTool.warning.fileAlreadyExists', array('filePath' => $filePath)) . "\n");
+			printf(PKPLocale::translate('admin.copyAccessLogFileTool.warning.fileAlreadyExists', array('filePath' => $filePath)) . "\n");
 			return;
 		}
 
@@ -170,7 +170,7 @@ class CopyAccessLogFileTool extends CommandLineTool {
 
 		// Copy the file to a temporary directory.
 		if (!$fileMgr->copyFile($filePath, $tmpFilePath)) {
-			printf(__('admin.copyAccessLogFileTool.error.copyingFile', array('filePath' => $filePath, 'tmpFilePath' => $tmpFilePath)) . "\n");
+			printf(PKPLocale::translate('admin.copyAccessLogFileTool.error.copyingFile', array('filePath' => $filePath, 'tmpFilePath' => $tmpFilePath)) . "\n");
 			exit(1);
 		}
 
@@ -190,11 +190,11 @@ class CopyAccessLogFileTool extends CommandLineTool {
 		exec($egrepPath . " -i '" . $this->_journalPaths . "' " . escapeshellarg($tmpFilePath) . " > " . escapeshellarg($destinationPath));
 
 		if (!$fileMgr->deleteFile($tmpFilePath)) {
-			printf(__('admin.copyAccessLogFileTool.error.deletingFile', array('tmpFilePath' => $tmpFilePath)) . "\n");
+			printf(PKPLocale::translate('admin.copyAccessLogFileTool.error.deletingFile', array('tmpFilePath' => $tmpFilePath)) . "\n");
 			exit(1);
 		}
 
-		printf(__('admin.copyAccessLogFileTool.success', array('filePath' => $filePath, 'destinationPath' => $destinationPath)) . "\n");
+		printf(PKPLocale::translate('admin.copyAccessLogFileTool.success', array('filePath' => $filePath, 'destinationPath' => $destinationPath)) . "\n");
 	}
 }
 

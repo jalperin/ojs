@@ -33,8 +33,8 @@ class SettingsForm extends Form {
 		$this->plugin =& $plugin;
 
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
-		$this->addCheck(new FormValidator($this, 'apiKey', 'string', __('plugins.generic.alm.apiKeyRequired')));
-		$this->addCheck(new FormValidator($this, 'depositUrl', 'string', __('plugins.generic.alm.depositUrlRequired')));
+		$this->addCheck(new FormValidator($this, 'apiKey', 'string', PKPLocale::translate('plugins.generic.alm.apiKeyRequired')));
+		$this->addCheck(new FormValidator($this, 'depositUrl', 'string', PKPLocale::translate('plugins.generic.alm.depositUrlRequired')));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

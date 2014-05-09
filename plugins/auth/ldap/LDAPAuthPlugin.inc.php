@@ -53,7 +53,7 @@ class LDAPAuthPlugin extends AuthPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.auth.ldap.displayName');
+		return PKPLocale::translate('plugins.auth.ldap.displayName');
 	}
 
 	/**
@@ -61,7 +61,7 @@ class LDAPAuthPlugin extends AuthPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.auth.ldap.description');
+		return PKPLocale::translate('plugins.auth.ldap.description');
 	}
 
 

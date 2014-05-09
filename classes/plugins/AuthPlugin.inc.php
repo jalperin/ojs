@@ -237,7 +237,7 @@ class AuthPlugin extends Plugin {
 		return array(
 			array(
 				'authSources',
-				__('admin.authSources')
+				PKPLocale::translate('admin.authSources')
 			)
 		);
 	}

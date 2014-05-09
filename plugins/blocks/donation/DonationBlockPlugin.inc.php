@@ -57,14 +57,14 @@ class DonationBlockPlugin extends BlockPlugin {
 	 * @return String
 	 */
 	function getDisplayName() {
-		return __('plugins.block.donation.displayName');
+		return PKPLocale::translate('plugins.block.donation.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return __('plugins.block.user.description');
+		return PKPLocale::translate('plugins.block.user.description');
 	}
 
 	/**

@@ -63,14 +63,14 @@ class UsageStatsPlugin extends GenericPlugin {
 	* @see PKPPlugin::getDisplayName()
 	*/
 	function getDisplayName() {
-		return __('plugins.generic.usageStats.displayName');
+		return PKPLocale::translate('plugins.generic.usageStats.displayName');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.generic.usageStats.description');
+		return PKPLocale::translate('plugins.generic.usageStats.description');
 	}
 
 	/**
@@ -123,7 +123,7 @@ class UsageStatsPlugin extends GenericPlugin {
 				if ($settingsForm->validate()) {
 					$settingsForm->execute();
 					$message = NOTIFICATION_TYPE_SUCCESS;
-					$messageParams = array('contents' => __('plugins.generic.usageStats.settings.saved'));
+					$messageParams = array('contents' => PKPLocale::translate('plugins.generic.usageStats.settings.saved'));
 					return false;
 				} else {
 					$settingsForm->display();
@@ -145,7 +145,7 @@ class UsageStatsPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = parent::getManagementVerbs();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('manager.plugins.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('manager.plugins.settings'));
 		}
 		return $verbs;
 	}

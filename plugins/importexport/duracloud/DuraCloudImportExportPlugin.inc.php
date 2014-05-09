@@ -38,11 +38,11 @@ class DuraCloudImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.importexport.duracloud.displayName');
+		return PKPLocale::translate('plugins.importexport.duracloud.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.importexport.duracloud.description');
+		return PKPLocale::translate('plugins.importexport.duracloud.description');
 	}
 
 	function display(&$args, $request) {
@@ -291,8 +291,8 @@ class DuraCloudImportExportPlugin extends ImportExportPlugin {
 
 		if (!$journal) {
 			if ($journalPath != '') {
-				echo __('plugins.importexport.duracloud.cliError') . "\n";
-				echo __('plugins.importexport.duracloud.error.unknownJournal', array('journalPath' => $journalPath)) . "\n";
+				echo PKPLocale::translate('plugins.importexport.duracloud.cliError') . "\n";
+				echo PKPLocale::translate('plugins.importexport.duracloud.error.unknownJournal', array('journalPath' => $journalPath)) . "\n";
 				return;
 			}
 			$this->usage($scriptName);
@@ -305,8 +305,8 @@ class DuraCloudImportExportPlugin extends ImportExportPlugin {
 		$dcc =& $this->getDuraCloudConnection();
 		$ds = new DuraStore($dcc);
 		if ($ds->getSpace($spaceId, $metadata) === false) {
-			echo __('plugins.importexport.duracloud.cliError') . "\n";
-			echo __('plugins.importexport.duracloud.configuration.credentialsInvalid') . "\n";
+			echo PKPLocale::translate('plugins.importexport.duracloud.cliError') . "\n";
+			echo PKPLocale::translate('plugins.importexport.duracloud.configuration.credentialsInvalid') . "\n";
 			return;
 		}
 
@@ -317,8 +317,8 @@ class DuraCloudImportExportPlugin extends ImportExportPlugin {
 
 				if (!$user) {
 					if ($userName != '') {
-						echo __('plugins.importexport.duracloud.cliError') . "\n";
-						echo __('plugins.importexport.duracloud.error.unknownUser', array('userName' => $userName)) . "\n\n";
+						echo PKPLocale::translate('plugins.importexport.duracloud.cliError') . "\n";
+						echo PKPLocale::translate('plugins.importexport.duracloud.error.unknownUser', array('userName' => $userName)) . "\n\n";
 					}
 					$this->usage($scriptName);
 					return;
@@ -352,7 +352,7 @@ class DuraCloudImportExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo __('plugins.importexport.duracloud.cliUsage', array(
+		echo PKPLocale::translate('plugins.importexport.duracloud.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

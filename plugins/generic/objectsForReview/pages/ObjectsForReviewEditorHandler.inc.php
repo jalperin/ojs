@@ -67,7 +67,7 @@ class ObjectsForReviewEditorHandler extends Handler {
 		// Filter by review object type
 		$reviewObjectTypeDao =& DAORegistry::getDAO('ReviewObjectTypeDAO');
 		$allTypes =& $reviewObjectTypeDao->getTypeIdsAlphabetizedByContext($journalId);
-		$filterTypeOptions = array(0 => __('common.all'));
+		$filterTypeOptions = array(0 => PKPLocale::translate('common.all'));
 		// Consider active types for the creation of a new object for review
 		$createTypeOptions = array();
 		foreach ($allTypes as $type) {
@@ -424,7 +424,7 @@ class ObjectsForReviewEditorHandler extends Handler {
 		$templateMgr->assign('search', $search);
 		$templateMgr->assign('searchInitial', $searchInitial);
 		$templateMgr->assign('searchFieldOptions', $fieldOptions);
-		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 
 		$templateMgr->assign_by_ref('users', $users);
 		$templateMgr->assign_by_ref('usersAssigned', $usersAssigned);
@@ -1050,7 +1050,7 @@ class ObjectsForReviewEditorHandler extends Handler {
 			$userMailingAddress = $user->getMailingAddress();
 			$userCountryCode = $user->getCountry();
 			if (empty($userMailingAddress)) {
-				$userMailingAddress = __('plugins.generic.objectsForReview.editor.noMailingAddress');
+				$userMailingAddress = PKPLocale::translate('plugins.generic.objectsForReview.editor.noMailingAddress');
 			} else {
 				$countryDao =& DAORegistry::getDAO('CountryDAO');
 				$countries =& $countryDao->getCountries();

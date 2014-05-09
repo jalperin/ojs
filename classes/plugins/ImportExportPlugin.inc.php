@@ -115,7 +115,7 @@ class ImportExportPlugin extends Plugin {
 		return array(
 			array(
 				'importexport',
-				__('manager.importExport')
+				PKPLocale::translate('manager.importExport')
 			)
 		);
 	}

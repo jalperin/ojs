@@ -48,14 +48,14 @@ class UsageEventPlugin extends GenericPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.usageEvent.displayName');
+		return PKPLocale::translate('plugins.generic.usageEvent.displayName');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.generic.usageEvent.description');
+		return PKPLocale::translate('plugins.generic.usageEvent.description');
 	}
 
 	/**

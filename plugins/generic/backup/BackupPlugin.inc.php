@@ -53,7 +53,7 @@ class BackupPlugin extends GenericPlugin {
 		$smarty =& $args[1];
 		$output =& $args[2];
 		$request = Application::getRequest();
-		$output .= '<li>&#187; <a href="' . $request->url(null, 'backup') . '">' . __('plugins.generic.backup.link') . '</a></li>';
+		$output .= '<li>&#187; <a href="' . $request->url(null, 'backup') . '">' . PKPLocale::translate('plugins.generic.backup.link') . '</a></li>';
 		return false;
 	}
 
@@ -134,7 +134,7 @@ class BackupPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.backup.name');
+		return PKPLocale::translate('plugins.generic.backup.name');
 	}
 
 	/**
@@ -142,7 +142,7 @@ class BackupPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.generic.backup.description');
+		return PKPLocale::translate('plugins.generic.backup.description');
 	}
 
 	/**
@@ -160,7 +160,7 @@ class BackupPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		return array(array(
 			($this->getEnabled()?'disable':'enable'),
-			__($this->getEnabled()?'manager.plugins.disable':'manager.plugins.enable')
+			PKPLocale::translate($this->getEnabled()?'manager.plugins.disable':'manager.plugins.enable')
 		));
 	}
 

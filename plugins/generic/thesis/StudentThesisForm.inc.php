@@ -42,8 +42,8 @@ class StudentThesisForm extends Form {
 		$thesisPlugin->import('Thesis');
 
 		$this->validDegrees = array (
-			THESIS_DEGREE_MASTERS => __('plugins.generic.thesis.manager.degree.masters'),
-			THESIS_DEGREE_DOCTORATE => __('plugins.generic.thesis.manager.degree.doctorate')
+			THESIS_DEGREE_MASTERS => PKPLocale::translate('plugins.generic.thesis.manager.degree.masters'),
+			THESIS_DEGREE_DOCTORATE => PKPLocale::translate('plugins.generic.thesis.manager.degree.doctorate')
 		);
 
 		import('lib.pkp.classes.captcha.CaptchaManager');

@@ -439,7 +439,7 @@ class BooksForReviewEditorHandler extends Handler {
 		$templateMgr->assign('helpTopicId', 'journal.roles.author');
 		$templateMgr->assign('bookId', $bookId);
 		$templateMgr->assign('returnPage', $returnPage);
-		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 		$templateMgr->display($bfrPlugin->getTemplatePath() . 'editor' . '/' . 'authors.tpl');
 	}
 
@@ -647,7 +647,7 @@ class BooksForReviewEditorHandler extends Handler {
 						$dueDateTimestamp = time() + ($dueWeeks * 7 * 24 * 60 * 60);
 
 						if (empty($userMailingAddress)) {
-							$userMailingAddress = __('plugins.generic.booksForReview.editor.noMailingAddress');
+							$userMailingAddress = PKPLocale::translate('plugins.generic.booksForReview.editor.noMailingAddress');
 						} else {
 							$countryDao =& DAORegistry::getDAO('CountryDAO');
 							$countries =& $countryDao->getCountries();
@@ -812,7 +812,7 @@ class BooksForReviewEditorHandler extends Handler {
 					$userCountryCode = $book->getUserCountry();
 
 					if (empty($userMailingAddress)) {
-						$userMailingAddress = __('plugins.generic.booksForReview.editor.noMailingAddress');
+						$userMailingAddress = PKPLocale::translate('plugins.generic.booksForReview.editor.noMailingAddress');
 					} else {
 						$countryDao =& DAORegistry::getDAO('CountryDAO');
 						$countries =& $countryDao->getCountries();

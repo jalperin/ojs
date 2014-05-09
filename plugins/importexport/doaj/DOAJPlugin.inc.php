@@ -46,7 +46,7 @@ class DOAJPlugin extends ImportExportPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.importexport.doaj.displayName');
+		return PKPLocale::translate('plugins.importexport.doaj.displayName');
 	}
 
 	/**
@@ -54,7 +54,7 @@ class DOAJPlugin extends ImportExportPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.importexport.doaj.description');
+		return PKPLocale::translate('plugins.importexport.doaj.description');
 	}
 
 	/**

@@ -513,7 +513,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($journal->getId()));
 
 			$templateMgr->assign('helpTopicId', 'journal.roles.reviewer');
-			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+			$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 			$templateMgr->assign('reviewerDatabaseLinks', $journal->getSetting('reviewerDatabaseLinks'));
 			$templateMgr->assign('sort', $sort);
 			$templateMgr->assign('sortDirection', $sortDirection);
@@ -622,7 +622,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 		));
 		$templateMgr->assign('roleId', $roleId);
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 
 		$templateMgr->assign('helpTopicId', 'journal.roles.index');
 		$templateMgr->display('sectionEditor/searchUsers.tpl');
@@ -1247,7 +1247,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 			$templateMgr->assign('articleId', $articleId);
 
 			$templateMgr->assign('helpTopicId', 'journal.roles.copyeditor');
-			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+			$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 			$templateMgr->display('sectionEditor/selectUser.tpl');
 		}
 	}
@@ -1720,7 +1720,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $searchQuery);
 			$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
-			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+			$templateMgr->assign('alphaList', explode(' ', PKPLocale::translate('common.alphaList')));
 
 			$templateMgr->assign('pageTitle', 'user.role.layoutEditors');
 			$templateMgr->assign('pageSubTitle', 'editor.article.selectLayoutEditor');
@@ -1976,7 +1976,7 @@ class SubmissionEditHandler extends SectionEditorHandler {
 		import('classes.submission.form.SuppFileForm');
 
 		$suppFileForm = new SuppFileForm($submission, $journal);
-		$suppFileForm->setData('title', array($submission->getLocale() => __('common.untitled')));
+		$suppFileForm->setData('title', array($submission->getLocale() => PKPLocale::translate('common.untitled')));
 		$suppFileId = $suppFileForm->execute($fileName, $request->getUserVar('createRemote'));
 
 		$request->redirect(null, null, 'editSuppFile', array($articleId, $suppFileId));

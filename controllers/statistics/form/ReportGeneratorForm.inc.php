@@ -84,7 +84,7 @@ class ReportGeneratorForm extends Form {
 		$reportTemplateOptions = array();
 		$reportTemplates = $this->_defaultReportTemplates;
 		foreach($reportTemplates as $reportTemplate) {
-			$reportTemplateOptions[] = __($reportTemplate['nameLocaleKey']);
+			$reportTemplateOptions[] = PKPLocale::translate($reportTemplate['nameLocaleKey']);
 		}
 
 		if (!empty($reportTemplateOptions)) $this->setData('reportTemplateOptions', $reportTemplateOptions);
@@ -200,8 +200,8 @@ class ReportGeneratorForm extends Form {
 		$this->setData('fileAssocTypes', array(ASSOC_TYPE_GALLEY, ASSOC_TYPE_ISSUE_GALLEY));
 		$this->setData('orderColumnsOptions', $orderColumns);
 		$this->setData('orderDirectionsOptions', array(
-			STATISTICS_ORDER_ASC => __('manager.statistics.reports.orderDir.asc'),
-			STATISTICS_ORDER_DESC => __('manager.statistics.reports.orderDir.desc')));
+			STATISTICS_ORDER_ASC => PKPLocale::translate('manager.statistics.reports.orderDir.asc'),
+			STATISTICS_ORDER_DESC => PKPLocale::translate('manager.statistics.reports.orderDir.desc')));
 
 		$columnsOptions = $this->_columns;
 		// Reports will always include this column.

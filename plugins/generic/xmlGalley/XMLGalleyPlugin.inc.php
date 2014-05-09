@@ -42,11 +42,11 @@ class XMLGalleyPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.xmlGalley.displayName');
+		return PKPLocale::translate('plugins.generic.xmlGalley.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.xmlGalley.description');
+		return PKPLocale::translate('plugins.generic.xmlGalley.description');
 	}
 
 	/**
@@ -191,7 +191,7 @@ class XMLGalleyPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.xmlGalley.manager.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('plugins.generic.xmlGalley.manager.settings'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}
@@ -237,7 +237,7 @@ class XMLGalleyPlugin extends GenericPlugin {
 
 					// check the result
 					if (trim(preg_replace("/\s+/", " ", $result)) != "Open Journal Systems Success" ) {
-						$form->addError('content', __('plugins.generic.xmlGalley.settings.externalXSLTFailure'));
+						$form->addError('content', PKPLocale::translate('plugins.generic.xmlGalley.settings.externalXSLTFailure'));
 					} else $templateMgr->assign('testSuccess', true);
 
 				}
@@ -284,9 +284,9 @@ class XMLGalleyPlugin extends GenericPlugin {
 							$this->updateSetting($journal->getId(), 'XSLstylesheet', 'custom');
 							$this->updateSetting($journal->getId(), 'customXSL', $fileName);
 
-						} else $form->addError('content', __('plugins.generic.xmlGalley.settings.customXSLInvalid'));
+						} else $form->addError('content', PKPLocale::translate('plugins.generic.xmlGalley.settings.customXSLInvalid'));
 
-					} else $form->addError('content', __('plugins.generic.xmlGalley.settings.customXSLRequired'));
+					} else $form->addError('content', PKPLocale::translate('plugins.generic.xmlGalley.settings.customXSLRequired'));
 
 					// re-populate the form values with the new settings
 					$form->initData();

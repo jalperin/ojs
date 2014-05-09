@@ -44,7 +44,7 @@ class ReferralPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.googleAnalytics.manager.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('plugins.generic.googleAnalytics.manager.settings'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}
@@ -268,7 +268,7 @@ class ReferralPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.referral.name');
+		return PKPLocale::translate('plugins.generic.referral.name');
 	}
 
 	/**
@@ -276,7 +276,7 @@ class ReferralPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.generic.referral.description');
+		return PKPLocale::translate('plugins.generic.referral.description');
 	}
 
 	/**

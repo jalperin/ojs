@@ -40,11 +40,11 @@ class CustomThemePlugin extends ThemePlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.theme.custom.name');
+		return PKPLocale::translate('plugins.theme.custom.name');
 	}
 
 	function getDescription() {
-		return __('plugins.theme.custom.description');
+		return PKPLocale::translate('plugins.theme.custom.description');
 	}
 
 	function getStylesheetFilename() {
@@ -52,7 +52,7 @@ class CustomThemePlugin extends ThemePlugin {
 	}
 
 	function getManagementVerbs() {
-		return array(array('settings', __('plugins.theme.custom.settings')));
+		return array(array('settings', PKPLocale::translate('plugins.theme.custom.settings')));
 	}
 
 	/**

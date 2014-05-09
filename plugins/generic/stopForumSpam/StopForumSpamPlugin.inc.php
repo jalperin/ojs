@@ -35,11 +35,11 @@ class StopForumSpamPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.stopForumSpam.displayName');
+		return PKPLocale::translate('plugins.generic.stopForumSpam.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.stopForumSpam.description');
+		return PKPLocale::translate('plugins.generic.stopForumSpam.description');
 	}
 
 	/**
@@ -93,7 +93,7 @@ class StopForumSpamPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.stopForumSpam.manager.settings'));
+			$verbs[] = array('settings', PKPLocale::translate('plugins.generic.stopForumSpam.manager.settings'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}
@@ -155,7 +155,7 @@ class StopForumSpamPlugin extends GenericPlugin {
 		// empty always produce <appears>no</appears> elements.
 
 		if (preg_match('/<appears>yes<\/appears>/', $response)) {
-			$form->addError(__('plugins.generic.stopForumSpam.checkName'), __('plugins.generic.stopForumSpam.checkMessage'));
+			$form->addError(PKPLocale::translate('plugins.generic.stopForumSpam.checkName'), PKPLocale::translate('plugins.generic.stopForumSpam.checkMessage'));
 			return true;
 		}
 

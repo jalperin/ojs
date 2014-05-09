@@ -81,7 +81,7 @@ class ObjectForReviewForm extends Form {
 		// Get language list
 		$languageDao =& DAORegistry::getDAO('LanguageDAO');
 		$languages =& $languageDao->getLanguages();
-		$validLanguages = array('' => __('plugins.generic.objectsForReview.editor.objectForReview.chooseLanguage'));
+		$validLanguages = array('' => PKPLocale::translate('plugins.generic.objectsForReview.editor.objectForReview.chooseLanguage'));
 		while (list(, $language) = each($languages)) {
 			$validLanguages[$language->getCode()] = $language->getName();
 		}

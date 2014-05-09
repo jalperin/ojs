@@ -212,7 +212,7 @@ class SubscriptionType extends DataObject {
 	 */
 	function getDurationYearsMonths($locale = null) {
 		if ($this->getData('nonExpiring')) {
-			return __('subscriptionTypes.nonExpiring', null, $locale);
+			return PKPLocale::translate('subscriptionTypes.nonExpiring', null, $locale);
 		}
 
 		$years = (int)floor($this->getData('duration')/12);
@@ -220,17 +220,17 @@ class SubscriptionType extends DataObject {
 		$yearsMonths = '';
 
 		if ($years == 1) {
-			$yearsMonths = '1 ' . __('subscriptionTypes.year', null, $locale);
+			$yearsMonths = '1 ' . PKPLocale::translate('subscriptionTypes.year', null, $locale);
 		} elseif ($years > 1) {
-			$yearsMonths = $years . ' ' . __('subscriptionTypes.years', null, $locale);
+			$yearsMonths = $years . ' ' . PKPLocale::translate('subscriptionTypes.years', null, $locale);
 		}
 
 		if ($months == 1) {
 			$yearsMonths .= $yearsMonths == ''  ? '1 ' : ' 1 ';
-			$yearsMonths .= __('subscriptionTypes.month', null, $locale);
+			$yearsMonths .= PKPLocale::translate('subscriptionTypes.month', null, $locale);
 		} elseif ($months > 1){
 			$yearsMonths .= $yearsMonths == ''  ? $months . ' ' : ' ' . $months . ' ';
-			$yearsMonths .= __('subscriptionTypes.months', null, $locale);
+			$yearsMonths .= PKPLocale::translate('subscriptionTypes.months', null, $locale);
 		}
 
 		return $yearsMonths;

@@ -44,7 +44,7 @@ class OpenAdsBlockPlugin extends BlockPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.generic.openads');
+		return PKPLocale::translate('plugins.generic.openads');
 	}
 
 	/**
@@ -52,7 +52,7 @@ class OpenAdsBlockPlugin extends BlockPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.generic.openads.description');
+		return PKPLocale::translate('plugins.generic.openads.description');
 	}
 
 	/**

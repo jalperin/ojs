@@ -38,11 +38,11 @@ class ThesisFeedGatewayPlugin extends GatewayPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.thesisfeed.displayName');
+		return PKPLocale::translate('plugins.generic.thesisfeed.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.thesisfeed.description');
+		return PKPLocale::translate('plugins.generic.thesisfeed.description');
 	}
 
 	/**

@@ -41,11 +41,11 @@ class ViewReportPlugin extends ReportPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.reports.views.displayName');
+		return PKPLocale::translate('plugins.reports.views.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.reports.views.description');
+		return PKPLocale::translate('plugins.reports.views.description');
 	}
 
 	function display(&$args) {
@@ -57,12 +57,12 @@ class ViewReportPlugin extends ReportPlugin {
 		$metricsDao =& DAORegistry::getDAO('MetricsDAO'); /* @var $metricsDao MetricsDAO */
 
 		$columns = array(
-		__('plugins.reports.views.articleId'),
-		__('plugins.reports.views.articleTitle'),
-		__('issue.issue'),
-		__('plugins.reports.views.datePublished'),
-		__('plugins.reports.views.abstractViews'),
-		__('plugins.reports.views.galleyViews'),
+		PKPLocale::translate('plugins.reports.views.articleId'),
+		PKPLocale::translate('plugins.reports.views.articleTitle'),
+		PKPLocale::translate('issue.issue'),
+		PKPLocale::translate('plugins.reports.views.datePublished'),
+		PKPLocale::translate('plugins.reports.views.abstractViews'),
+		PKPLocale::translate('plugins.reports.views.galleyViews'),
 		);
 		$galleyLabels = array();
 		$galleyViews = array();

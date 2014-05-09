@@ -208,7 +208,7 @@ class ReportPlugin extends Plugin {
 		return array(
 			array(
 				'reports',
-				__('manager.statistics.reports')
+				PKPLocale::translate('manager.statistics.reports')
 			)
 		);
 	}

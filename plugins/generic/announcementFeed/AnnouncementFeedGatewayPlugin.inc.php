@@ -43,11 +43,11 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.announcementfeed.displayName');
+		return PKPLocale::translate('plugins.generic.announcementfeed.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.announcementfeed.description');
+		return PKPLocale::translate('plugins.generic.announcementfeed.description');
 	}
 
 	/**

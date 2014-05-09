@@ -35,13 +35,13 @@ class SettingsForm extends Form {
     
     // Citation formats
     $this->_citationFormats = array(
-        DATAVERSE_PLUGIN_CITATION_FORMAT_APA => __('plugins.generic.dataverse.settings.citationFormat.apa'),
+        DATAVERSE_PLUGIN_CITATION_FORMAT_APA => PKPLocale::translate('plugins.generic.dataverse.settings.citationFormat.apa'),
       );
     
     // Study release options
     $this->_studyReleaseOptions = array(
-        DATAVERSE_PLUGIN_RELEASE_ARTICLE_ACCEPTED => __('plugins.generic.dataverse.settings.studyReleaseSubmissionAccepted'),
-        DATAVERSE_PLUGIN_RELEASE_ARTICLE_PUBLISHED => __('plugins.generic.dataverse.settings.studyReleaseArticlePublished')
+        DATAVERSE_PLUGIN_RELEASE_ARTICLE_ACCEPTED => PKPLocale::translate('plugins.generic.dataverse.settings.studyReleaseSubmissionAccepted'),
+        DATAVERSE_PLUGIN_RELEASE_ARTICLE_PUBLISHED => PKPLocale::translate('plugins.generic.dataverse.settings.studyReleaseArticlePublished')
     );    
 
     // Public id plugins
@@ -73,7 +73,7 @@ class SettingsForm extends Form {
     $this->setData('dataAvailability', 
             $plugin->getSetting($journal->getId(), 'dataAvailability') ? 
             $plugin->getSetting($journal->getId(), 'dataAvailability') : 
-           __('plugins.generic.dataverse.settings.default.dataAvailabilityPolicy', array('journal' => $journal->getLocalizedTitle()))
+           PKPLocale::translate('plugins.generic.dataverse.settings.default.dataAvailabilityPolicy', array('journal' => $journal->getLocalizedTitle()))
           );
 
     $this->setData('fetchTermsOfUse', $plugin->getSetting($journal->getId(), 'fetchTermsOfUse'));
@@ -134,11 +134,11 @@ class SettingsForm extends Form {
     $templateMgr->assign('studyReleaseOptions', $this->_studyReleaseOptions);
     
     /** @fixme use language from OJS field instructions */
-    $templateMgr->assign('authorGuidelinesContent',     __('plugins.generic.dataverse.settings.default.authorGuidelines', array('journal' => $journal->getLocalizedTitle())));
-    $templateMgr->assign('checklistContent',            __('plugins.generic.dataverse.settings.default.checklist', array('journal' => $journal->getLocalizedTitle())));    
-    $templateMgr->assign('reviewPolicyContent',         __('plugins.generic.dataverse.settings.default.reviewPolicy'));
-    $templateMgr->assign('reviewGuidelinesContent',     __('plugins.generic.dataverse.settings.default.reviewGuidelines'));    
-    $templateMgr->assign('copyeditInstructionsContent', __('plugins.generic.dataverse.settings.default.copyeditInstructions'));
+    $templateMgr->assign('authorGuidelinesContent',     PKPLocale::translate('plugins.generic.dataverse.settings.default.authorGuidelines', array('journal' => $journal->getLocalizedTitle())));
+    $templateMgr->assign('checklistContent',            PKPLocale::translate('plugins.generic.dataverse.settings.default.checklist', array('journal' => $journal->getLocalizedTitle())));
+    $templateMgr->assign('reviewPolicyContent',         PKPLocale::translate('plugins.generic.dataverse.settings.default.reviewPolicy'));
+    $templateMgr->assign('reviewGuidelinesContent',     PKPLocale::translate('plugins.generic.dataverse.settings.default.reviewGuidelines'));
+    $templateMgr->assign('copyeditInstructionsContent', PKPLocale::translate('plugins.generic.dataverse.settings.default.copyeditInstructions'));
     
 		parent::fetch($request, $template, $display);
 	}  

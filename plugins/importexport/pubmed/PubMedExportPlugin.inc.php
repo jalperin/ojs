@@ -38,11 +38,11 @@ class PubMedExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.importexport.pubmed.displayName');
+		return PKPLocale::translate('plugins.importexport.pubmed.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.importexport.pubmed.description');
+		return PKPLocale::translate('plugins.importexport.pubmed.description');
 	}
 
 	function display(&$args, $request) {
@@ -189,8 +189,8 @@ class PubMedExportPlugin extends ImportExportPlugin {
 
 		if (!$journal) {
 			if ($journalPath != '') {
-				echo __('plugins.importexport.pubmed.cliError') . "\n";
-				echo __('plugins.importexport.pubmed.error.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
+				echo PKPLocale::translate('plugins.importexport.pubmed.cliError') . "\n";
+				echo PKPLocale::translate('plugins.importexport.pubmed.error.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -200,22 +200,22 @@ class PubMedExportPlugin extends ImportExportPlugin {
 			case 'articles':
 				$results =& ArticleSearch::formatResults($args);
 				if (!$this->exportArticles($results, $xmlFile)) {
-					echo __('plugins.importexport.pubmed.cliError') . "\n";
-					echo __('plugins.importexport.pubmed.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+					echo PKPLocale::translate('plugins.importexport.pubmed.cliError') . "\n";
+					echo PKPLocale::translate('plugins.importexport.pubmed.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 				}
 				return;
 			case 'issue':
 				$issueId = array_shift($args);
 				$issue =& $issueDao->getIssueByBestIssueId($issueId, $journal->getId());
 				if ($issue == null) {
-					echo __('plugins.importexport.pubmed.cliError') . "\n";
-					echo __('plugins.importexport.pubmed.export.error.issueNotFound', array('issueId' => $issueId)) . "\n\n";
+					echo PKPLocale::translate('plugins.importexport.pubmed.cliError') . "\n";
+					echo PKPLocale::translate('plugins.importexport.pubmed.export.error.issueNotFound', array('issueId' => $issueId)) . "\n\n";
 					return;
 				}
 				$issues = array($issue);
 				if (!$this->exportIssues($journal, $issues, $xmlFile)) {
-					echo __('plugins.importexport.pubmed.cliError') . "\n";
-					echo __('plugins.importexport.pubmed.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+					echo PKPLocale::translate('plugins.importexport.pubmed.cliError') . "\n";
+					echo PKPLocale::translate('plugins.importexport.pubmed.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 				}
 				return;
 		}
@@ -227,7 +227,7 @@ class PubMedExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo __('plugins.importexport.pubmed.cliUsage', array(
+		echo PKPLocale::translate('plugins.importexport.pubmed.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

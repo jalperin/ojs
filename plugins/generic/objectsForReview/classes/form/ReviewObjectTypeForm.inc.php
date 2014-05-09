@@ -137,7 +137,7 @@ class ReviewObjectTypeForm extends Form {
 						$display = $metadataNode->getAttribute('display');
 						$reviewObjectMetadata->setDisplay($display == 'true' ? 1 : 0);
 					}
-					$name = __($metadataNode->getChildValue('name'), array(), $locale);
+					$name = PKPLocale::translate($metadataNode->getChildValue('name'), array(), $locale);
 					$reviewObjectMetadata->setName($name, $locale);
 
 					if ($key == 'role') {
@@ -148,7 +148,7 @@ class ReviewObjectTypeForm extends Form {
 							$possibleOptions = array();
 							$index = 1;
 							foreach ($selectionOptions->getChildren() as $selectionOptionNode) {
-								$possibleOptions[] = array('order' => $index, 'content' => __($selectionOptionNode->getValue(), array(), $locale));
+								$possibleOptions[] = array('order' => $index, 'content' => PKPLocale::translate($selectionOptionNode->getValue(), array(), $locale));
 								$index++;
 							}
 							$reviewObjectMetadata->setPossibleOptions($possibleOptions, $locale);

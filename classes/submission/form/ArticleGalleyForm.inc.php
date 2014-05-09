@@ -87,7 +87,7 @@ class ArticleGalleyForm extends Form {
 
 		$publicGalleyId = $this->getData('publicGalleyId');
 		if ($publicGalleyId && $journalDao->anyPubIdExists($journal->getId(), 'publisher-id', $publicGalleyId, ASSOC_TYPE_GALLEY, $this->galleyId)) {
-			$this->addError('publicGalleyId', __('editor.publicIdentificationExists', array('publicIdentifier' => $publicGalleyId)));
+			$this->addError('publicGalleyId', PKPLocale::translate('editor.publicIdentificationExists', array('publicIdentifier' => $publicGalleyId)));
 			$this->addErrorField('publicGalleyId');
 		}
 
@@ -233,9 +233,9 @@ class ArticleGalleyForm extends Form {
 					$galley->setLabel('HTML');
 					if ($enablePublicGalleyId) $galley->setStoredPubId('publisher-id', 'html');
 				} else if ($createRemote) {
-					$galley->setLabel(__('common.remote'));
-					$galley->setRemoteURL(__('common.remoteURL'));
-					if ($enablePublicGalleyId) $galley->setStoredPubId('publisher-id', strtolower(__('common.remote')));
+					$galley->setLabel(PKPLocale::translate('common.remote'));
+					$galley->setRemoteURL(PKPLocale::translate('common.remoteURL'));
+					if ($enablePublicGalleyId) $galley->setStoredPubId('publisher-id', strtolower(PKPLocale::translate('common.remote')));
 				} else if (isset($fileType)) {
 					if(strstr($fileType, 'pdf')) {
 						$galley->setLabel('PDF');
@@ -250,7 +250,7 @@ class ArticleGalleyForm extends Form {
 				}
 
 				if ($galley->getLabel() == null) {
-					$galley->setLabel(__('common.untitled'));
+					$galley->setLabel(PKPLocale::translate('common.untitled'));
 				}
 
 			} else {
@@ -307,7 +307,7 @@ class ArticleGalleyForm extends Form {
 			$type = $fileManager->getUploadedFileType($fileName);
 			$extension = $fileManager->getImageExtension($type);
 			if (!$extension) {
-				$this->addError('imageFile', __('submission.layout.imageInvalid'));
+				$this->addError('imageFile', PKPLocale::translate('submission.layout.imageInvalid'));
 				return false;
 			}
 

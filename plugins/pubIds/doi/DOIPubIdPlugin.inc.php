@@ -41,14 +41,14 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @see PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
-		return __('plugins.pubIds.doi.displayName');
+		return PKPLocale::translate('plugins.pubIds.doi.displayName');
 	}
 
 	/**
 	 * @see PKPPlugin::getDescription()
 	 */
 	function getDescription() {
-		return __('plugins.pubIds.doi.description');
+		return PKPLocale::translate('plugins.pubIds.doi.description');
 	}
 
 	/**
@@ -293,7 +293,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		if($this->checkDuplicate($newDoi, $pubObject, $journalId)) {
 			return true;
 		} else {
-			$errorMsg = __('plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique');
+			$errorMsg = PKPLocale::translate('plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique');
 			return false;
 		}
 	}
